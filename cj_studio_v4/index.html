@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CJ Web Studio — Premium Web Design & Development | Durban</title>
+  <meta name="description" content="CJ Web Studio builds high-performance websites and web apps for South African businesses. 3D interactive, hand-coded, 98+ PageSpeed. Based in Durban.">
+  <meta property="og:title" content="CJ Web Studio — Premium Web Design & Development">
+  <meta property="og:description" content="Modern websites & apps that drive real results. Hand-coded, zero-bloat, 98+ PageSpeed.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <style>
+    /* Ensure hero spline container is fully positioned before JS runs */
+    .hero__spline, .page-hero__bg {
+      position: absolute !important;
+      inset: 0 !important;
+      overflow: hidden !important;
+    }
+    .hero { position: relative !important; overflow: hidden !important; }
+    .page-hero { position: relative !important; overflow: hidden !important; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="assets/images/logo.jpg" alt="CJ Web Studio">
+        <span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span>
+      </a>
+
+      <ul class="navbar__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener" class="navbar__social">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="mailto:cibangukaj@gmail.com" class="navbar__social">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 8 10 6 10-6"/></svg>
+        </a>
+        <a href="contact.html" class="btn btn--primary btn--sm">
+          Start a Project
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary" style="margin-top:2rem;width:fit-content">
+      Start a Project
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCROLLYTELLING HERO
+  ════════════════════════════════════════════ -->
+  <section class="hero">
+    <!-- Spline 3D (loads from .splinecode file) -->
+    <div class="hero__spline" data-spline-scene="scenes/orb_hiro.splinecode"></div>
+
+    <!-- Layered atmospheric overlays -->
+    <div class="hero__vignette"></div>
+    <div class="hero__grid-bg"></div>
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="hero__fade-bottom"></div>
+
+    <div class="hero__content container">
+      <div class="hero__grid">
+
+        <!-- LEFT: headline + CTA -->
+        <div>
+          <div class="hero__badge reveal">
+            <span class="dot"></span>
+            Based in Durban · Available for Projects
+          </div>
+
+          <h1 class="hero__title reveal" data-delay="1">
+            We Build<br>
+            Websites &amp; Apps<br>
+            <span class="gradient-text">That Drive Results</span>
+          </h1>
+
+          <p class="hero__sub reveal" data-delay="2">
+            Premium design. Zero-bloat code. 98+ PageSpeed.
+            Built for South African businesses that demand more.
+          </p>
+
+          <div class="hero__buttons reveal" data-delay="3">
+            <a href="contact.html" class="btn btn--primary">
+              Start Your Project
+              <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <a href="work.html" class="btn btn--ghost">View Our Work</a>
+          </div>
+
+          <!-- Stats in a unified glass strip -->
+          <div class="hero__stats reveal" data-delay="4">
+            <div class="hero__stat-item">
+              <div class="hero__stat-value" data-count="50" data-suffix="+">0+</div>
+              <div class="hero__stat-label">Projects</div>
+            </div>
+            <div class="hero__stat-item">
+              <div class="hero__stat-value" data-count="98">0</div>
+              <div class="hero__stat-label">PageSpeed</div>
+            </div>
+            <div class="hero__stat-item">
+              <div class="hero__stat-value" data-count="4.9">0</div>
+              <div class="hero__stat-label">Rating</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Glassmorphism floating cards -->
+        <div class="hero__cards">
+          <!-- Card 1: Tasks in progress -->
+          <div class="hero-card hero-card--1">
+            <div class="hero-card__header">
+              <span class="hero-card__header-title">Active Project</span>
+              <span class="hero-card__badge hero-card__badge--blue">In Progress</span>
+            </div>
+            <div class="hero-card__row">
+              <span class="hero-card__emoji">💡</span>
+              <div style="flex:1">
+                <div class="hero-card__row-name">Strategy &amp; Research</div>
+                <div class="hero-card__progress">
+                  <div class="hero-card__progress-fill" style="width:100%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-card__row">
+              <span class="hero-card__emoji">🎨</span>
+              <div style="flex:1">
+                <div class="hero-card__row-name">UI/UX Design</div>
+                <div class="hero-card__progress">
+                  <div class="hero-card__progress-fill" style="width:80%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-card__row">
+              <span class="hero-card__emoji">⚡</span>
+              <div style="flex:1">
+                <div class="hero-card__row-name">Development</div>
+                <div class="hero-card__progress">
+                  <div class="hero-card__progress-fill" style="width:45%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Approval -->
+          <div class="hero-card hero-card--2">
+            <div class="hero-card__header">
+              <span class="hero-card__header-title">Awaiting Approval</span>
+              <span class="hero-card__badge hero-card__badge--amber">Review</span>
+            </div>
+            <div class="hero-card__row">
+              <span class="hero-card__emoji">🖥️</span>
+              <div>
+                <div class="hero-card__row-name">Homepage Design</div>
+                <div class="hero-card__row-desc">Final mockup ready</div>
+              </div>
+            </div>
+            <div class="hero-card__row">
+              <span class="hero-card__emoji">📄</span>
+              <div>
+                <div class="hero-card__row-name">Content Review</div>
+                <div class="hero-card__row-desc">Copy finalized</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Live -->
+          <div class="hero-card hero-card--3">
+            <div class="hero-card__header">
+              <span class="hero-card__header-title">Saxony Coffee Website</span>
+              <span class="hero-card__badge hero-card__badge--green">Live 🚀</span>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-muted)">Deployed · 3 Durban locations · Booking enabled</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero__scroll">
+      <div class="hero__scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══ TICKER ═══ -->
+  <div class="ticker">
+    <div class="ticker__track">
+      <span class="ticker__item"><span class="star">✦</span> Web Design</span>
+      <span class="ticker__item"><span class="star">✦</span> Spline 3D</span>
+      <span class="ticker__item"><span class="star">✦</span> React Development</span>
+      <span class="ticker__item"><span class="star">✦</span> UI/UX Design</span>
+      <span class="ticker__item"><span class="star">✦</span> SEO Optimization</span>
+      <span class="ticker__item"><span class="star">✦</span> Mobile Apps</span>
+      <span class="ticker__item"><span class="star">✦</span> Responsive Builds</span>
+      <span class="ticker__item"><span class="star">✦</span> 98+ PageSpeed</span>
+      <span class="ticker__item"><span class="star">✦</span> WhatsApp API</span>
+      <span class="ticker__item"><span class="star">✦</span> Booking Systems</span>
+      <span class="ticker__item"><span class="star">✦</span> Admin Dashboards</span>
+      <span class="ticker__item"><span class="star">✦</span> Web Design</span>
+      <span class="ticker__item"><span class="star">✦</span> Spline 3D</span>
+      <span class="ticker__item"><span class="star">✦</span> React Development</span>
+      <span class="ticker__item"><span class="star">✦</span> UI/UX Design</span>
+      <span class="ticker__item"><span class="star">✦</span> SEO Optimization</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCROLLYTELLING — PROCESS
+  ════════════════════════════════════════════ -->
+  <section class="section scrolly-section section--bg2">
+    <div class="container">
+      <div class="scrolly-container">
+
+        <!-- Sticky visual panel -->
+        <div class="scrolly-sticky">
+          <div class="scrolly-visual">
+            <div class="scrolly-visual__bg"></div>
+            <div class="scrolly-visual__icon">🎨</div>
+          </div>
+        </div>
+
+        <!-- Scrolling panels -->
+        <div class="scrolly-panels">
+          <div class="scrolly-panel">
+            <div>
+              <div class="scrolly-panel__number">01 / 04</div>
+              <h3 class="scrolly-panel__title">Design That <span class="gradient-text">Converts</span></h3>
+              <p class="scrolly-panel__desc">Every layout is built around your business goals. We study your audience, define the journey, and design an experience that turns visitors into clients — not just a pretty page.</p>
+            </div>
+          </div>
+          <div class="scrolly-panel">
+            <div>
+              <div class="scrolly-panel__number">02 / 04</div>
+              <h3 class="scrolly-panel__title">Performance <span class="gradient-text">By Default</span></h3>
+              <p class="scrolly-panel__desc">Hand-coded HTML, CSS, and JS — no bloated builders. Our builds consistently score 95–100 on Google PageSpeed. Speed is a feature, not an afterthought.</p>
+            </div>
+          </div>
+          <div class="scrolly-panel">
+            <div>
+              <div class="scrolly-panel__number">03 / 04</div>
+              <h3 class="scrolly-panel__title">3D &amp; Interactive <span class="gradient-text">Experiences</span></h3>
+              <p class="scrolly-panel__desc">Spline scenes running at 60fps with WebGL fallback. Real-time interactive 3D embedded with zero performance penalty. Your site becomes a product, not a brochure.</p>
+            </div>
+          </div>
+          <div class="scrolly-panel">
+            <div>
+              <div class="scrolly-panel__number">04 / 04</div>
+              <h3 class="scrolly-panel__title">Built for <span class="gradient-text">Mobile First</span></h3>
+              <p class="scrolly-panel__desc">Over 70% of South African web traffic is mobile. Every pixel we design starts on the small screen and scales up flawlessly — tested across all devices before we ship.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES — Glassmorphism Cards
+  ════════════════════════════════════════════ -->
+  <section class="section section--bg3 parallax-section">
+    <div class="parallax-bg" data-speed="0.06" style="background:radial-gradient(ellipse at 20% 50%, hsla(263,70%,60%,0.05) 0%, transparent 60%)"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section__header">
+        <span class="eyebrow">Services</span>
+        <h2 class="section-title">What We Build <span class="gradient-text">Best</span></h2>
+        <p>End-to-end digital experiences — from strategy and design to code and deployment.</p>
+      </div>
+
+      <div class="grid grid--3 services-grid">
+        <div class="card reveal">
+          <div class="card__topline"></div>
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3 class="card__title">UI/UX Design</h3>
+          <p class="card__desc">Research-driven layouts that convert visitors into customers. Wireframes, prototypes, and final design systems.</p>
+        </div>
+
+        <div class="card reveal" data-delay="1">
+          <div class="card__topline"></div>
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="card__title">Web Development</h3>
+          <p class="card__desc">Hand-coded, zero-bloat builds. Clean HTML, CSS, JavaScript. 98/100 PageSpeed guaranteed.</p>
+        </div>
+
+        <div class="card reveal" data-delay="2">
+          <div class="card__topline"></div>
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-width="2"/></svg>
+          </div>
+          <h3 class="card__title">App Development</h3>
+          <p class="card__desc">Web apps, dashboards, and client portals. Built with React or vanilla JS — scalable and maintainable.</p>
+        </div>
+
+        <div class="card reveal" data-delay="3">
+          <div class="card__topline"></div>
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="card__title">3D &amp; Interactive</h3>
+          <p class="card__desc">Spline scenes embedded at 60fps with WebGL mobile fallback. Your site as an immersive experience.</p>
+        </div>
+
+        <div class="card reveal" data-delay="4">
+          <div class="card__topline"></div>
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <h3 class="card__title">SEO &amp; Performance</h3>
+          <p class="card__desc">Semantic HTML, Core Web Vitals, structured data, speed audits. Built to rank from day one.</p>
+        </div>
+
+        <div class="card reveal" data-delay="5">
+          <div class="card__topline"></div>
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          </div>
+          <h3 class="card__title">Integrations</h3>
+          <p class="card__desc">EmailJS, WhatsApp API, Google Sheets, Booking Systems, Admin dashboards. All wired together cleanly.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:2.5rem">
+        <a href="services.html" class="btn btn--primary btn--sm">
+          View All Services
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BENTO GRID — Why CJ Web Studio
+  ════════════════════════════════════════════ -->
+  <section class="section section--bg1 parallax-section">
+    <div class="parallax-bg" data-speed="0.1" style="background:radial-gradient(ellipse at 80% 20%, hsla(225,80%,56%,0.06) 0%, transparent 55%)"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section__header">
+        <span class="eyebrow">Why Us</span>
+        <h2 class="section-title">Built Different. <span class="gradient-text">Delivered Better.</span></h2>
+        <p>Not a template shop. Not a page builder agency. We hand-craft every line.</p>
+      </div>
+
+      <div class="bento-grid">
+
+        <!-- Row 1: Large + two smalls -->
+        <div class="bento-cell bento-cell--span7 bento-cell--featured reveal">
+          <div>
+            <div class="bento-badge">⚡ Performance First</div>
+            <h3 class="bento-cell__title" style="font-size:1.5rem;margin-bottom:0.75rem">Every site scores<br><span class="gradient-text">95–100 PageSpeed</span></h3>
+            <p class="bento-cell__desc">Speed isn't optional. It directly impacts your Google rankings, bounce rate, and conversions. We build lean, mean websites from the ground up.</p>
+          </div>
+          <div class="bento-progress">
+            <div class="bento-progress__item">
+              <div class="bento-progress__label"><span>Performance</span><span>98</span></div>
+              <div class="bento-progress__bar"><div class="bento-progress__fill" data-width="98%"></div></div>
+            </div>
+            <div class="bento-progress__item">
+              <div class="bento-progress__label"><span>Accessibility</span><span>96</span></div>
+              <div class="bento-progress__bar"><div class="bento-progress__fill" data-width="96%"></div></div>
+            </div>
+            <div class="bento-progress__item">
+              <div class="bento-progress__label"><span>SEO</span><span>100</span></div>
+              <div class="bento-progress__bar"><div class="bento-progress__fill" data-width="100%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-cell bento-cell--span5 reveal" data-delay="1">
+          <span class="bento-cell__icon">🎯</span>
+          <div class="bento-cell__title">Pixel-Perfect Code</div>
+          <p class="bento-cell__desc">Hand-crafted HTML, CSS, and JavaScript. No page builders, no bloat. Clean code you own forever and can edit in VS Code.</p>
+          <div class="bento-stack" style="margin-top:1.25rem">
+            <span class="bento-stack__pill">HTML5</span>
+            <span class="bento-stack__pill">CSS3</span>
+            <span class="bento-stack__pill">Vanilla JS</span>
+            <span class="bento-stack__pill">React</span>
+            <span class="bento-stack__pill">Spline</span>
+          </div>
+        </div>
+
+        <!-- Row 2: Three equal cells -->
+        <div class="bento-cell bento-cell--span4 bento-cell--accent reveal" data-delay="1">
+          <span class="bento-cell__icon">🌐</span>
+          <div class="bento-cell__title">3D Interactivity</div>
+          <p class="bento-cell__desc">Spline scenes at 60fps with WebGL fallback. Your site feels like an experience, not a brochure.</p>
+        </div>
+
+        <div class="bento-cell bento-cell--span4 reveal" data-delay="2">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+            <span style="font-size:2rem">🔑</span>
+          </div>
+          <div class="bento-cell__title">Full Ownership</div>
+          <p class="bento-cell__desc">All source code, assets, and files delivered to you. Zero lock-in. Zero dependencies on us continuing to exist.</p>
+        </div>
+
+        <div class="bento-cell bento-cell--span4 reveal" data-delay="3">
+          <div class="bento-cell__stat gradient-text">R0</div>
+          <div class="bento-cell__title">Platform fees</div>
+          <p class="bento-cell__desc">No Wix. No Squarespace. No monthly builder subscriptions. Pure HTML that runs anywhere.</p>
+        </div>
+
+        <!-- Row 3: Full width + split -->
+        <div class="bento-cell bento-cell--span8 reveal" data-delay="1">
+          <div style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap">
+            <div style="flex:1;min-width:200px">
+              <span class="bento-cell__label">Our Process</span>
+              <div class="bento-cell__title">From discovery to live in<br><span class="gradient-text">5–10 business days</span></div>
+            </div>
+            <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.75rem">
+              <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem">
+                <span style="width:28px;height:28px;border-radius:50%;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700;flex-shrink:0">1</span>
+                <span>Discovery &amp; Brief</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem">
+                <span style="width:28px;height:28px;border-radius:50%;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700;flex-shrink:0">2</span>
+                <span>Design &amp; Prototype</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem">
+                <span style="width:28px;height:28px;border-radius:50%;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700;flex-shrink:0">3</span>
+                <span>Build &amp; Review</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem">
+                <span style="width:28px;height:28px;border-radius:50%;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700;flex-shrink:0">4</span>
+                <span>Deploy &amp; Handoff</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-cell bento-cell--span4 bento-cell--dark reveal" data-delay="2" style="display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div class="bento-cell__stat gradient-text">50+</div>
+            <div class="bento-cell__title">Projects Delivered</div>
+            <p class="bento-cell__desc" style="margin-top:0.5rem">Restaurants, coffee shops, agencies, portfolios, booking platforms.</p>
+          </div>
+          <a href="work.html" class="btn btn--ghost btn--sm" style="width:fit-content;margin-top:1.5rem">
+            View Work
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="section section--bg2">
+    <div class="container container--narrow">
+      <div class="section__header">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title">Common <span class="gradient-text">Questions</span></h2>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0.6rem">
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span>How long does a project take?</span>
+            <span class="faq-item__toggle">+</span>
+          </button>
+          <div class="faq-item__answer"><p>5–10 business days for most websites. 2–3 days for landing pages. 2–3 weeks for larger projects with custom integrations and dashboards.</p></div>
+        </div>
+        <div class="faq-item reveal" data-delay="1">
+          <button class="faq-item__question">
+            <span>What do I need to provide?</span>
+            <span class="faq-item__toggle">+</span>
+          </button>
+          <div class="faq-item__answer"><p>Your logo, brand colors, any photos or content, and examples of sites you like. We handle all design, code, and deployment from there.</p></div>
+        </div>
+        <div class="faq-item reveal" data-delay="2">
+          <button class="faq-item__question">
+            <span>Do I pay upfront?</span>
+            <span class="faq-item__toggle">+</span>
+          </button>
+          <div class="faq-item__answer"><p>50% deposit to start, 50% on completion before going live. This protects both parties and keeps the project moving.</p></div>
+        </div>
+        <div class="faq-item reveal" data-delay="3">
+          <button class="faq-item__question">
+            <span>Do I get full project files?</span>
+            <span class="faq-item__toggle">+</span>
+          </button>
+          <div class="faq-item__answer"><p>Yes — all HTML, CSS, JS, and asset files. Open in VS Code and edit anything yourself. Zero lock-in, zero ongoing dependencies.</p></div>
+        </div>
+        <div class="faq-item reveal" data-delay="4">
+          <button class="faq-item__question">
+            <span>Can you add Spline 3D animations?</span>
+            <span class="faq-item__toggle">+</span>
+          </button>
+          <div class="faq-item__answer"><p>Yes — it's our specialty. Send us your Spline export and we embed it correctly. 60fps, no watermarks, with a canvas fallback for older devices.</p></div>
+        </div>
+        <div class="faq-item reveal" data-delay="5">
+          <button class="faq-item__question">
+            <span>Do you offer post-launch support?</span>
+            <span class="faq-item__toggle">+</span>
+          </button>
+          <div class="faq-item__answer"><p>Yes — monthly maintenance from R500/month. Includes content updates, backups, security monitoring, and performance checks.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="section section--bg1 cta-section">
+    <div class="cta-section__glow"></div>
+    <div class="container container--narrow" style="position:relative;text-align:center">
+      <span class="eyebrow" style="justify-content:center">Ready?</span>
+      <h2 class="section-title reveal" style="margin-bottom:1rem">Let's Build Something <span class="gradient-text">That Performs</span></h2>
+      <p class="reveal" data-delay="1" style="color:var(--text-secondary);margin-bottom:2.5rem;font-size:1.05rem">Most projects go live in under 2 weeks. Tell us what you're building.</p>
+      <div class="reveal" data-delay="2" style="display:flex;justify-content:center;gap:0.875rem;flex-wrap:wrap">
+        <a href="contact.html" class="btn btn--primary">
+          Start a Project
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="btn btn--ghost">
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="navbar__logo">
+            <img src="assets/images/logo.jpg" alt="CJ" style="width:30px;height:30px;border-radius:6px">
+            <span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span>
+          </a>
+          <p>Premium web design &amp; development for South African businesses. Based in Durban. Building since 2022.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Pages</h4>
+          <div class="footer__links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="work.html">Work</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Services</h4>
+          <div class="footer__links">
+            <span>UI/UX Design</span>
+            <span>Web Development</span>
+            <span>App Development</span>
+            <span>3D &amp; Interactive</span>
+            <span>SEO &amp; Performance</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Connect</h4>
+          <div class="footer__links">
+            <a href="mailto:cibangukaj@gmail.com">cibangukaj@gmail.com</a>
+            <a href="https://wa.me/27817957533" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://github.com/cj7-john" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2025 CJ Web Studio. All rights reserved.</span>
+        <span>Durban, South Africa 🇿🇦</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16.004 0C7.165 0 .002 7.163.002 16c0 2.822.737 5.577 2.137 8.003L.015 32l8.2-2.148A15.92 15.92 0 0016.004 32C24.837 32 32 24.837 32 16S24.837 0 16.004 0zm0 29.12a13.08 13.08 0 01-6.678-1.833l-.479-.284-4.965 1.302 1.325-4.842-.312-.497A13.06 13.06 0 012.88 16c0-7.236 5.888-13.12 13.124-13.12S29.12 8.764 29.12 16s-5.88 13.12-13.116 13.12zm7.188-9.826c-.394-.197-2.332-1.15-2.694-1.282-.362-.131-.626-.197-.89.197-.263.394-1.02 1.282-1.25 1.545-.23.263-.46.296-.854.099-.394-.197-1.664-.613-3.17-1.956-1.172-1.044-1.963-2.334-2.193-2.728-.23-.394-.025-.607.173-.803.177-.177.394-.46.591-.69.197-.23.263-.394.394-.657.131-.263.066-.493-.033-.69-.099-.197-.89-2.146-1.22-2.94-.321-.772-.648-.668-.89-.68l-.759-.013c-.263 0-.69.099-1.05.493-.362.394-1.382 1.35-1.382 3.293s1.414 3.82 1.611 4.084c.197.263 2.783 4.248 6.742 5.957.942.406 1.678.649 2.252.83.946.3 1.808.258 2.49.157.76-.113 2.332-.953 2.662-1.873.33-.92.33-1.71.23-1.873-.098-.165-.362-.263-.756-.46z"/></svg>
+  </a>
+
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — CJ Web Studio | Durban Web Agency</title>
+  <meta name="description" content="CJ Web Studio is a Durban-based web design and development agency. Meet the team and learn what drives us.">
+  <link rel="icon" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <style>
+    /* ── Team Section ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 1100px) { .team-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 768px)  { .team-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 480px)  { .team-grid { grid-template-columns: 1fr; } }
+
+    .team-card {
+      position: relative;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out-expo);
+      cursor: default;
+      --gx: 50%; --gy: 50%;
+    }
+    .team-card::before {
+      content: '';
+      position: absolute;
+      inset: 0; border-radius: inherit;
+      background: radial-gradient(circle at var(--gx) var(--gy), hsla(225,80%,56%,0.12) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      z-index: 1; pointer-events: none;
+    }
+    .team-card:hover::before { opacity: 1; }
+    .team-card:hover {
+      border-color: hsla(225,80%,70%,0.28);
+      box-shadow: 0 16px 48px hsla(225,80%,56%,0.18);
+    }
+
+    .team-card__photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+    }
+    .team-card__photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      transition: transform 0.55s var(--ease-out-expo);
+      display: block;
+    }
+    .team-card:hover .team-card__photo img { transform: scale(1.05); }
+
+    .team-card__photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, hsla(228,32%,7%,0.92) 0%, hsla(228,32%,7%,0.3) 40%, transparent 70%);
+    }
+
+    .team-card__info {
+      padding: 1.1rem 1.1rem 1.25rem;
+      position: relative; z-index: 2;
+    }
+    .team-card__name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .team-card__role {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 0.5rem;
+    }
+    .team-card__desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Founder (John) card — wider */
+    .team-card--founder {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .team-card--founder .team-card__photo { aspect-ratio: auto; }
+    .team-card--founder .team-card__info {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem;
+    }
+    .team-card--founder .team-card__name { font-size: 1.3rem; }
+    @media (max-width: 768px) {
+      .team-card--founder { grid-column: span 1; display: block; }
+      .team-card--founder .team-card__photo { aspect-ratio: 3/4; }
+    }
+
+    .team-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue-light);
+      background: hsla(225,80%,56%,0.12);
+      border: 1px solid hsla(225,80%,56%,0.22);
+      border-radius: var(--radius-full);
+      padding: 0.2rem 0.7rem;
+      margin-bottom: 0.6rem;
+      width: fit-content;
+    }
+  </style>
+  <style>
+    .hero__spline, .page-hero__bg { position: absolute !important; inset: 0 !important; overflow: hidden !important; }
+    .hero { position: relative !important; overflow: hidden !important; }
+    .page-hero { position: relative !important; overflow: hidden !important; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="assets/images/logo.jpg" alt="CJ Web Studio">
+        <span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener" class="navbar__social">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="mailto:cibangukaj@gmail.com" class="navbar__social">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 8 10 6 10-6"/></svg>
+        </a>
+        <a href="contact.html" class="btn btn--primary btn--sm">
+          Start a Project
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary" style="margin-top:2rem;width:fit-content">Start a Project</a>
+  </div>
+
+  <!-- PAGE HERO — animated canvas orb -->
+  <section class="page-hero">
+    <div class="page-hero__bg" data-spline-scene="scenes/scene_4.splinecode"></div>
+    <div class="page-hero__grid-bg"></div>
+    <div class="page-hero__orb"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="eyebrow">About Us</span>
+      <h1>The Studio Behind <span class="gradient-text">Your Next Website</span></h1>
+      <p>Small team, big output. Every project gets founder-level attention and precision craftsmanship.</p>
+    </div>
+  </section>
+
+  <!-- FOUNDER STORY -->
+  <section class="section section--bg3 parallax-section">
+    <div class="parallax-bg" data-speed="0.08" style="background:radial-gradient(ellipse at 30% 60%, hsla(225,80%,56%,0.05) 0%, transparent 55%)"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="about-grid">
+        <div class="founder-img reveal">
+          <img src="assets/images/founder.jpg" alt="John — Founder of CJ Web Studio">
+          <div class="founder-img__overlay">
+            <h3 style="font-family:var(--font-heading);font-weight:700;color:var(--text-primary);font-size:1.1rem">John Buhendwa</h3>
+            <p style="font-size:0.85rem;color:var(--text-secondary)">Founder · CAO · Developer · Designer</p>
+          </div>
+        </div>
+        <div class="reveal" data-delay="1">
+          <span class="eyebrow">Our Story</span>
+          <h2 class="section-title" style="margin-bottom:1.25rem">Built from <span class="gradient-text">Durban, for the World</span></h2>
+          <div style="display:flex;flex-direction:column;gap:1rem;font-size:0.9rem;color:var(--text-secondary);line-height:1.75">
+            <p>CJ Web Studio started with a simple belief: South African businesses deserve world-class websites that actually drive results — not template filler with generic stock photos and page builder bloat.</p>
+            <p>Every line of code is handwritten. Every design is purpose-built around the client's brand and audience. We don't use builders because your business isn't generic — and your website shouldn't be either.</p>
+            <p>From 3D interactive experiences to high-converting multi-page business sites, we've helped 50+ businesses establish a powerful digital presence that grows with them.</p>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.75rem">
+            <a href="contact.html" class="btn btn--primary btn--sm">Work With Us <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/cj7-john" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">GitHub Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TEAM SECTION ═══ -->
+  <section class="section section--bg1">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">The Team</span>
+        <h2 class="section-title">People Who Make <span class="gradient-text">It Happen</span></h2>
+        <p>Durban-based creatives and engineers who care deeply about craft and results.</p>
+      </div>
+
+      <div class="team-grid">
+
+        <!-- John — Founder / CAO (wide card) -->
+        <div class="team-card team-card--founder reveal">
+          <div class="team-card__photo">
+            <img src="assets/images/john.jpg" alt="John Buhendwa" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-badge">⭐ Founder</div>
+            <div class="team-card__name">John Buhendwa</div>
+            <div class="team-card__role">Chief Agency Officer</div>
+            <p class="team-card__desc">Leads strategy, client relationships, and creative direction. Full stack developer, UI/UX designer, and CAD specialist. The vision behind CJ Web Studio.</p>
+          </div>
+        </div>
+
+        <!-- Armand — Senior Software Dev -->
+        <div class="team-card reveal" data-delay="1">
+          <div class="team-card__photo">
+            <img src="assets/images/armand.png" alt="Armand" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__name">Armand</div>
+            <div class="team-card__role">Senior Software Developer</div>
+            <p class="team-card__desc">Leads complex builds and architecture decisions. Ensures clean, scalable, high-performance code ships on every project.</p>
+          </div>
+        </div>
+
+        <!-- Collen — Marketing Manager -->
+        <div class="team-card reveal" data-delay="2">
+          <div class="team-card__photo">
+            <img src="assets/images/collen.jpg" alt="Collen" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__name">Collen</div>
+            <div class="team-card__role">Marketing Manager</div>
+            <p class="team-card__desc">Drives brand growth, campaign strategy, and client acquisition. Makes sure every project is seen by the right audience.</p>
+          </div>
+        </div>
+
+        <!-- Kimmich — Full Stack Web Designer -->
+        <div class="team-card reveal" data-delay="3">
+          <div class="team-card__photo">
+            <img src="assets/images/kimmich.png" alt="Kimmich" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__name">Kimmich</div>
+            <div class="team-card__role">Full Stack Web Designer</div>
+            <p class="team-card__desc">Bridges design and code seamlessly. From pixel-perfect Figma files to responsive, animated front-ends that feel alive.</p>
+          </div>
+        </div>
+
+        <!-- Terence -->
+        <div class="team-card reveal" data-delay="1">
+          <div class="team-card__photo">
+            <img src="assets/images/terence.png" alt="Terence" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__name">Terence</div>
+            <div class="team-card__role">Frontend Developer</div>
+            <p class="team-card__desc">Crafts interactive interfaces with attention to animation, accessibility, and user experience.</p>
+          </div>
+        </div>
+
+        <!-- Kelvin -->
+        <div class="team-card reveal" data-delay="2">
+          <div class="team-card__photo">
+            <img src="assets/images/kelvin.png" alt="Kelvin" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__name">Kelvin</div>
+            <div class="team-card__role">UX Researcher</div>
+            <p class="team-card__desc">Digs into user behaviour and data to ensure every design decision is backed by real insight — not guesswork.</p>
+          </div>
+        </div>
+
+        <!-- Daniela -->
+        <div class="team-card reveal" data-delay="3">
+          <div class="team-card__photo">
+            <img src="assets/images/daniela.jpg" alt="Daniela" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__name">Daniela</div>
+            <div class="team-card__role">Content Strategist</div>
+            <p class="team-card__desc">Shapes brand voice, crafts copy, and ensures every word on the page earns its place.</p>
+          </div>
+        </div>
+
+        <!-- Clemence -->
+        <div class="team-card reveal" data-delay="1">
+          <div class="team-card__photo">
+            <img src="assets/images/clemence.jpg" alt="Clemence" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__name">Clemence</div>
+            <div class="team-card__role">Graphic Designer</div>
+            <p class="team-card__desc">Brings the visual identity to life — logos, brand systems, social assets, and print collateral.</p>
+          </div>
+        </div>
+
+        <!-- Narsice -->
+        <div class="team-card reveal" data-delay="2">
+          <div class="team-card__photo">
+            <img src="assets/images/narsice.jpg" alt="Narsice" loading="lazy">
+            <div class="team-card__photo-overlay"></div>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__name">Narsice</div>
+            <div class="team-card__role">Project Coordinator</div>
+            <p class="team-card__desc">Keeps timelines tight and clients informed. Makes sure nothing falls through the cracks from brief to launch.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS BENTO -->
+  <section class="section section--bg2">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Capabilities</span>
+        <h2 class="section-title">What We <span class="gradient-text">Bring to Every Project</span></h2>
+        <p>A self-taught creative studio spanning development, design, marketing, and architecture.</p>
+      </div>
+
+      <div class="skills-bento bento-grid">
+        <div class="bento-cell bento-cell--span8 bento-cell--featured reveal">
+          <div class="bento-badge">Full Stack Development</div>
+          <p class="bento-cell__desc" style="margin-bottom:1.25rem">FNB App Academy via IT Varsity — 32 credits, Cert No. AOTXAA072025. Covers React, REST APIs, databases, and deployment.</p>
+          <div class="bento-stack">
+            <span class="bento-stack__pill">HTML5</span>
+            <span class="bento-stack__pill">CSS3</span>
+            <span class="bento-stack__pill">JavaScript</span>
+            <span class="bento-stack__pill">React</span>
+            <span class="bento-stack__pill">Node.js</span>
+            <span class="bento-stack__pill">REST APIs</span>
+            <span class="bento-stack__pill">Git / GitHub</span>
+            <span class="bento-stack__pill">Netlify</span>
+            <span class="bento-stack__pill">Vercel</span>
+          </div>
+        </div>
+        <div class="bento-cell bento-cell--span4 reveal" data-delay="1">
+          <span class="bento-cell__icon">🎨</span>
+          <div class="bento-cell__title">Design Tools</div>
+          <p class="bento-cell__desc">UI design, prototyping, and production-ready assets.</p>
+          <div class="bento-stack" style="margin-top:1rem">
+            <span class="bento-stack__pill">Figma</span>
+            <span class="bento-stack__pill">Spline</span>
+            <span class="bento-stack__pill">WordPress</span>
+            <span class="bento-stack__pill">Canva</span>
+          </div>
+        </div>
+        <div class="bento-cell bento-cell--span4 bento-cell--accent reveal">
+          <span class="bento-cell__icon">🏛️</span>
+          <div class="bento-cell__title">Architectural CAD</div>
+          <p class="bento-cell__desc">3+ years freelance CAD. Residential floor plans, drawing sets, and site plans in ArchiCAD.</p>
+        </div>
+        <div class="bento-cell bento-cell--span4 reveal" data-delay="1">
+          <span class="bento-cell__icon">📣</span>
+          <div class="bento-cell__title">Digital Marketing</div>
+          <p class="bento-cell__desc">Marketing assistant for the Saxony Group — social content, WhatsApp campaigns, and brand consistency.</p>
+        </div>
+        <div class="bento-cell bento-cell--span4 reveal" data-delay="2">
+          <span class="bento-cell__icon">📸</span>
+          <div class="bento-cell__title">Content Creation</div>
+          <p class="bento-cell__desc">Photography, copywriting, and social media strategy for hospitality and lifestyle brands.</p>
+        </div>
+        <div class="bento-cell bento-cell--span3 reveal" style="text-align:center;justify-content:center;display:flex;flex-direction:column;align-items:center">
+          <div class="bento-cell__stat gradient-text">50+</div>
+          <div class="bento-cell__title" style="font-size:0.9rem">Projects Live</div>
+        </div>
+        <div class="bento-cell bento-cell--span3 reveal" data-delay="1" style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <div class="bento-cell__stat gradient-text">9</div>
+          <div class="bento-cell__title" style="font-size:0.9rem">Team Members</div>
+        </div>
+        <div class="bento-cell bento-cell--span3 reveal" data-delay="2" style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <div class="bento-cell__stat gradient-text">98</div>
+          <div class="bento-cell__title" style="font-size:0.9rem">Avg PageSpeed</div>
+        </div>
+        <div class="bento-cell bento-cell--span3 reveal" data-delay="3" style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <div class="bento-cell__stat gradient-text">4.9</div>
+          <div class="bento-cell__title" style="font-size:0.9rem">Client Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section--bg3">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">What We Stand For</span>
+        <h2 class="section-title">The Principles <span class="gradient-text">We Work By</span></h2>
+      </div>
+      <div class="grid grid--3">
+        <div class="card reveal" style="text-align:center">
+          <div class="card__icon" style="margin:0 auto 1rem"><span style="font-size:1.25rem">🎯</span></div>
+          <h3 class="card__title">Results-Driven</h3>
+          <p class="card__desc">Every pixel serves a purpose. We design for conversions and real business outcomes — not just aesthetics.</p>
+        </div>
+        <div class="card reveal" data-delay="1" style="text-align:center">
+          <div class="card__icon" style="margin:0 auto 1rem"><span style="font-size:1.25rem">🤝</span></div>
+          <h3 class="card__title">Full Transparency</h3>
+          <p class="card__desc">You see the work, approve the direction, own the code. No surprises, no lock-in, no hidden fees.</p>
+        </div>
+        <div class="card reveal" data-delay="2" style="text-align:center">
+          <div class="card__icon" style="margin:0 auto 1rem"><span style="font-size:1.25rem">⚡</span></div>
+          <h3 class="card__title">Fast Delivery</h3>
+          <p class="card__desc">Most projects go live within 5–10 business days. We move fast without cutting corners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--bg1 cta-section">
+    <div class="cta-section__glow"></div>
+    <div class="container container--narrow" style="position:relative;text-align:center">
+      <h2 class="section-title reveal">Let's Build <span class="gradient-text">Together</span></h2>
+      <p class="reveal" data-delay="1" style="color:var(--text-secondary);margin:1rem 0 2.5rem">Whether it's a landing page or a full web app — we've got you covered.</p>
+      <div class="reveal" data-delay="2" style="display:flex;justify-content:center;gap:0.875rem;flex-wrap:wrap">
+        <a href="contact.html" class="btn btn--primary">Start a Project <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        <a href="work.html" class="btn btn--ghost">View Work</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="navbar__logo">
+            <img src="assets/images/logo.jpg" alt="CJ" style="width:30px;height:30px;border-radius:6px">
+            <span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span>
+          </a>
+          <p>Premium web design &amp; development for South African businesses. Based in Durban.</p>
+        </div>
+        <div><h4 class="footer__heading">Pages</h4><div class="footer__links"><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></div>
+        <div><h4 class="footer__heading">Services</h4><div class="footer__links"><span>UI/UX Design</span><span>Web Development</span><span>App Development</span><span>3D &amp; Interactive</span><span>SEO &amp; Performance</span></div></div>
+        <div><h4 class="footer__heading">Connect</h4><div class="footer__links"><a href="mailto:cibangukaj@gmail.com">cibangukaj@gmail.com</a><a href="https://wa.me/27817957533" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener">Instagram</a><a href="https://github.com/cj7-john" target="_blank" rel="noopener">GitHub</a></div></div>
+      </div>
+      <div class="footer__bottom"><span>&copy; 2025 CJ Web Studio. All rights reserved.</span><span>Durban, South Africa 🇿🇦</span></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16.004 0C7.165 0 .002 7.163.002 16c0 2.822.737 5.577 2.137 8.003L.015 32l8.2-2.148A15.92 15.92 0 0016.004 32C24.837 32 32 24.837 32 16S24.837 0 16.004 0zm0 29.12a13.08 13.08 0 01-6.678-1.833l-.479-.284-4.965 1.302 1.325-4.842-.312-.497A13.06 13.06 0 012.88 16c0-7.236 5.888-13.12 13.124-13.12S29.12 8.764 29.12 16s-5.88 13.12-13.116 13.12zm7.188-9.826c-.394-.197-2.332-1.15-2.694-1.282-.362-.131-.626-.197-.89.197-.263.394-1.02 1.282-1.25 1.545-.23.263-.46.296-.854.099-.394-.197-1.664-.613-3.17-1.956-1.172-1.044-1.963-2.334-2.193-2.728-.23-.394-.025-.607.173-.803.177-.177.394-.46.591-.69.197-.23.263-.394.394-.657.131-.263.066-.493-.033-.69-.099-.197-.89-2.146-1.22-2.94-.321-.772-.648-.668-.89-.68l-.759-.013c-.263 0-.69.099-1.05.493-.362.394-1.382 1.35-1.382 3.293s1.414 3.82 1.611 4.084c.197.263 2.783 4.248 6.742 5.957.942.406 1.678.649 2.252.83.946.3 1.808.258 2.49.157.76-.113 2.332-.953 2.662-1.873.33-.92.33-1.71.23-1.873-.098-.165-.362-.263-.756-.46z"/></svg>
+  </a>
+
+</body>
+</html>

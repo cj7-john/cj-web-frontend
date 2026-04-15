@@ -1,0 +1,68 @@
+/* ═══════════════════════════════════════════════════
+   CJ Web Studio v3 — Design Tokens
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  /* Backgrounds */
+  --bg-primary:    hsl(228, 32%, 7%);
+  --bg-secondary:  hsl(228, 28%, 9%);
+  --bg-tertiary:   hsl(228, 26%, 11%);
+  --bg-surface:    hsl(228, 24%, 15%);
+  --bg-surface2:   hsl(228, 22%, 19%);
+
+  /* Glassmorphism */
+  --glass-bg:      hsla(228, 30%, 18%, 0.45);
+  --glass-bg-2:    hsla(228, 30%, 22%, 0.35);
+  --glass-border:  hsla(255, 60%, 80%, 0.12);
+  --glass-border2: hsla(225, 80%, 70%, 0.18);
+  --glass-blur:    blur(20px) saturate(180%);
+  --glass-blur-lg: blur(40px) saturate(200%);
+
+  /* Text */
+  --text-primary:   hsl(0, 0%, 100%);
+  --text-secondary: hsl(220, 20%, 74%);
+  --text-muted:     hsl(220, 15%, 50%);
+
+  /* Brand */
+  --blue:        hsl(225, 80%, 56%);
+  --blue-light:  hsl(220, 90%, 72%);
+  --violet:      hsl(263, 70%, 60%);
+  --violet-light:hsl(263, 65%, 72%);
+  --cyan:        hsl(199, 89%, 48%);
+  --green:       hsl(155, 70%, 45%);
+  --amber:       hsl(38, 92%, 50%);
+  --rose:        hsl(330, 81%, 60%);
+
+  /* Borders */
+  --border:       hsl(228, 18%, 20%);
+  --border-bright:hsl(228, 18%, 26%);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, var(--blue) 0%, var(--violet) 100%);
+  --gradient-text:  linear-gradient(135deg, var(--blue-light) 0%, var(--violet-light) 50%, hsl(290, 60%, 72%) 100%);
+  --gradient-warm:  linear-gradient(135deg, var(--blue) 0%, var(--violet) 50%, var(--rose) 100%);
+  --gradient-glass: linear-gradient(135deg, hsla(255,60%,80%,0.08) 0%, hsla(225,80%,56%,0.04) 100%);
+
+  /* Shadows */
+  --shadow-blue:   0 8px 32px hsla(225, 80%, 56%, 0.25);
+  --shadow-glow:   0 0 60px hsla(263, 70%, 60%, 0.2);
+  --shadow-violet: 0 8px 32px hsla(263, 70%, 60%, 0.2);
+  --shadow-glass:  0 8px 32px hsla(0, 0%, 0%, 0.3), 0 2px 8px hsla(225, 80%, 56%, 0.06);
+
+  /* Fonts */
+  --font-heading: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — CJ Web Studio | Web Design & Development Durban</title>
+  <meta name="description" content="UI/UX design, web development, 3D interactive, SEO, integrations. Full-service digital agency based in Durban, South Africa.">
+  <link rel="icon" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <style>
+    .hero__spline, .page-hero__bg { position: absolute !important; inset: 0 !important; overflow: hidden !important; }
+    .hero { position: relative !important; overflow: hidden !important; }
+    .page-hero { position: relative !important; overflow: hidden !important; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo"><img src="assets/images/logo.jpg" alt="CJ Web Studio"><span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span></a>
+      <ul class="navbar__links"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <div class="navbar__actions">
+        <a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener" class="navbar__social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="mailto:cibangukaj@gmail.com" class="navbar__social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 8 10 6 10-6"/></svg></a>
+        <a href="contact.html" class="btn btn--primary btn--sm">Start a Project <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      </div>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html" class="btn btn--primary" style="margin-top:2rem;width:fit-content">Start a Project</a></div>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" data-spline-scene="scenes/scene_2.splinecode"></div>
+    <div class="page-hero__grid-bg"></div>
+    <div class="page-hero__orb"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="eyebrow">What We Do</span>
+      <h1>Services That <span class="gradient-text">Deliver Results</span></h1>
+      <p>Every service engineered to attract attention, build trust, and convert visitors into paying customers.</p>
+    </div>
+  </section>
+
+  <!-- CORE SERVICES — Bento Grid -->
+  <section class="section section--bg3">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Core Services</span>
+        <h2 class="section-title">Everything You Need, <span class="gradient-text">Nothing You Don't</span></h2>
+      </div>
+      <div class="bento-grid">
+
+        <div class="bento-cell bento-cell--span8 bento-cell--featured reveal">
+          <div>
+            <div class="bento-badge">01 — UI/UX Design</div>
+            <h3 class="bento-cell__title" style="font-size:1.45rem;margin-bottom:0.75rem">Design That <span class="gradient-text">Converts</span></h3>
+            <p class="bento-cell__desc" style="max-width:480px">Layouts built around your users — visually compelling, research-driven, and optimised from first scroll. Wireframes and prototypes locked before code begins.</p>
+          </div>
+          <div class="bento-stack" style="margin-top:1.5rem">
+            <span class="bento-stack__pill">Figma</span><span class="bento-stack__pill">Wireframing</span><span class="bento-stack__pill">Prototyping</span><span class="bento-stack__pill">Design Systems</span><span class="bento-stack__pill">Responsive</span>
+          </div>
+        </div>
+
+        <div class="bento-cell bento-cell--span4 reveal" data-delay="1">
+          <div class="bento-cell__icon-box"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div class="bento-cell__title">Web Development</div>
+          <p class="bento-cell__desc">Hand-coded, zero-bloat. No builders — clean HTML/CSS/JS at 98/100 PageSpeed. You own every byte.</p>
+          <div class="bento-stack" style="margin-top:1rem"><span class="bento-stack__pill">HTML/CSS</span><span class="bento-stack__pill">JavaScript</span><span class="bento-stack__pill">React</span></div>
+        </div>
+
+        <div class="bento-cell bento-cell--span4 reveal">
+          <div class="bento-cell__icon-box"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-width="2.5"/></svg></div>
+          <div class="bento-cell__title">App Development</div>
+          <p class="bento-cell__desc">Web apps, booking portals, dashboards built to scale. React or vanilla JS — clean and maintainable.</p>
+          <div class="bento-stack" style="margin-top:1rem"><span class="bento-stack__pill">Web Apps</span><span class="bento-stack__pill">PWA</span><span class="bento-stack__pill">APIs</span></div>
+        </div>
+
+        <div class="bento-cell bento-cell--span4 bento-cell--accent reveal" data-delay="1">
+          <span class="bento-cell__icon">🌐</span>
+          <div class="bento-cell__title">3D &amp; Interactive</div>
+          <p class="bento-cell__desc">Spline at 60fps, WebGL layering, canvas fallback, zero watermarks. Your site feels like a product.</p>
+          <div class="bento-stack" style="margin-top:1rem"><span class="bento-stack__pill">Spline</span><span class="bento-stack__pill">WebGL</span><span class="bento-stack__pill">Three.js</span></div>
+        </div>
+
+        <div class="bento-cell bento-cell--span4 reveal" data-delay="2">
+          <div class="bento-cell__icon-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+          <div class="bento-cell__title">SEO &amp; Performance</div>
+          <p class="bento-cell__desc">Core Web Vitals, structured data, meta tags, sitemaps, and speed audits. Built to rank from day one.</p>
+          <div class="bento-stack" style="margin-top:1rem"><span class="bento-stack__pill">Core Web Vitals</span><span class="bento-stack__pill">Schema</span></div>
+        </div>
+
+        <!-- Wide Integrations -->
+        <div class="bento-cell bento-cell--span12 reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;flex-wrap:wrap">
+          <div>
+            <div class="bento-badge">06 — Integrations &amp; Systems</div>
+            <h3 class="bento-cell__title" style="font-size:1.25rem;margin-bottom:0.75rem">Backends That <span class="gradient-text">Run Themselves</span></h3>
+            <p class="bento-cell__desc">EmailJS, Google Sheets, WhatsApp API, booking reference numbers, admin dashboards — wired together cleanly so your site works 24/7 without you lifting a finger.</p>
+            <div class="bento-stack" style="margin-top:1.25rem"><span class="bento-stack__pill">EmailJS</span><span class="bento-stack__pill">Google Sheets</span><span class="bento-stack__pill">WhatsApp API</span><span class="bento-stack__pill">Admin Panel</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.25rem">
+            <div class="checklist__item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Auto email alerts on every booking or enquiry</div>
+            <div class="checklist__item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Google Sheets as your live, free database</div>
+            <div class="checklist__item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp chat with pre-filled message templates</div>
+            <div class="checklist__item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Password-protected admin dashboard with CRUD</div>
+            <div class="checklist__item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Unique booking reference number per submission</div>
+            <div class="checklist__item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Guest + admin dual email confirmation templates</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section class="section section--bg1 parallax-section">
+    <div class="parallax-bg" data-speed="0.08" style="background:radial-gradient(ellipse at 70% 40%, hsla(263,70%,60%,0.05) 0%, transparent 55%)"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section__header">
+        <span class="eyebrow">Go Further</span>
+        <h2 class="section-title">Add-On <span class="gradient-text">Services</span></h2>
+        <p>Layer on extra value — bundled affordably with any project.</p>
+      </div>
+      <div class="grid grid--4">
+        <div class="card reveal" style="padding:1.35rem"><span style="font-size:1.5rem;display:block;margin-bottom:0.75rem">🔧</span><h3 class="card__title" style="font-size:0.9rem">Monthly Maintenance</h3><p class="card__desc" style="font-size:0.8rem">Content updates, backups, security — R500–R2,000/month</p></div>
+        <div class="card reveal" data-delay="1" style="padding:1.35rem"><span style="font-size:1.5rem;display:block;margin-bottom:0.75rem">✨</span><h3 class="card__title" style="font-size:0.9rem">Logo &amp; Brand Identity</h3><p class="card__desc" style="font-size:0.8rem">Colors, typography, icon mark, usage guide</p></div>
+        <div class="card reveal" data-delay="2" style="padding:1.35rem"><span style="font-size:1.5rem;display:block;margin-bottom:0.75rem">📧</span><h3 class="card__title" style="font-size:0.9rem">Email Marketing</h3><p class="card__desc" style="font-size:0.8rem">Mailchimp/Klaviyo integration and branded templates</p></div>
+        <div class="card reveal" data-delay="3" style="padding:1.35rem"><span style="font-size:1.5rem;display:block;margin-bottom:0.75rem">📍</span><h3 class="card__title" style="font-size:0.9rem">Google My Business</h3><p class="card__desc" style="font-size:0.8rem">Full GMB setup and local SEO optimisation</p></div>
+        <div class="card reveal" data-delay="4" style="padding:1.35rem"><span style="font-size:1.5rem;display:block;margin-bottom:0.75rem">✍️</span><h3 class="card__title" style="font-size:0.9rem">Blog &amp; Articles</h3><p class="card__desc" style="font-size:0.8rem">Shows expertise, drives long-tail organic traffic</p></div>
+        <div class="card reveal" data-delay="5" style="padding:1.35rem"><span style="font-size:1.5rem;display:block;margin-bottom:0.75rem">💬</span><h3 class="card__title" style="font-size:0.9rem">Live Chat</h3><p class="card__desc" style="font-size:0.8rem">Tawk.to integration — free forever, real-time support</p></div>
+        <div class="card reveal" data-delay="6" style="padding:1.35rem"><span style="font-size:1.5rem;display:block;margin-bottom:0.75rem">📅</span><h3 class="card__title" style="font-size:0.9rem">Booking Calendar</h3><p class="card__desc" style="font-size:0.8rem">Custom scheduler or Calendly — seamless booking</p></div>
+        <div class="card reveal" data-delay="7" style="padding:1.35rem"><span style="font-size:1.5rem;display:block;margin-bottom:0.75rem">📱</span><h3 class="card__title" style="font-size:0.9rem">WhatsApp Business</h3><p class="card__desc" style="font-size:0.8rem">Auto-replies, templates, and lead capture flows</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section section--bg2">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">How It Works</span>
+        <h2 class="section-title">Simple. <span class="gradient-text">Transparent.</span> Delivered.</h2>
+      </div>
+      <div class="grid grid--4">
+        <div class="process-step reveal"><div class="process-step__circle">💡<span class="process-step__num">1</span></div><h4 class="card__title" style="text-align:center;margin-bottom:0.5rem">Discovery</h4><p class="card__desc" style="text-align:center;font-size:0.85rem">We learn your business, goals, and audience through a focused brief.</p></div>
+        <div class="process-step reveal" data-delay="1"><div class="process-step__circle">🎨<span class="process-step__num">2</span></div><h4 class="card__title" style="text-align:center;margin-bottom:0.5rem">Design</h4><p class="card__desc" style="text-align:center;font-size:0.85rem">Visual direction locked in before a single line of code is written.</p></div>
+        <div class="process-step reveal" data-delay="2"><div class="process-step__circle">⚙️<span class="process-step__num">3</span></div><h4 class="card__title" style="text-align:center;margin-bottom:0.5rem">Build</h4><p class="card__desc" style="text-align:center;font-size:0.85rem">Clean, responsive, integrated code — tested across all devices.</p></div>
+        <div class="process-step reveal" data-delay="3"><div class="process-step__circle">🚀<span class="process-step__num">4</span></div><h4 class="card__title" style="text-align:center;margin-bottom:0.5rem">Launch</h4><p class="card__desc" style="text-align:center;font-size:0.85rem">Go live with full handover, hosting setup, and post-launch support.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--bg1 cta-section"><div class="cta-section__glow"></div>
+    <div class="container container--narrow" style="position:relative;text-align:center">
+      <h2 class="section-title reveal">Ready to Build <span class="gradient-text">Something Real?</span></h2>
+      <p class="reveal" data-delay="1" style="color:var(--text-secondary);margin:1rem 0 2.5rem">Tell us what you need — we'll get back within 24 hours.</p>
+      <div class="reveal" data-delay="2" style="display:flex;justify-content:center;gap:0.875rem;flex-wrap:wrap">
+        <a href="contact.html" class="btn btn--primary">Start a Project <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        <a href="work.html" class="btn btn--ghost">View Our Work</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="index.html" class="navbar__logo"><img src="assets/images/logo.jpg" alt="CJ" style="width:30px;height:30px;border-radius:6px"><span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span></a><p>Premium web design &amp; development for South African businesses. Based in Durban.</p></div>
+      <div><h4 class="footer__heading">Pages</h4><div class="footer__links"><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></div>
+      <div><h4 class="footer__heading">Services</h4><div class="footer__links"><span>UI/UX Design</span><span>Web Development</span><span>App Development</span><span>3D &amp; Interactive</span><span>SEO &amp; Performance</span></div></div>
+      <div><h4 class="footer__heading">Connect</h4><div class="footer__links"><a href="mailto:cibangukaj@gmail.com">cibangukaj@gmail.com</a><a href="https://wa.me/27817957533" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener">Instagram</a></div></div>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2025 CJ Web Studio. All rights reserved.</span><span>Durban, South Africa 🇿🇦</span></div>
+  </div></footer>
+  <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32"><path d="M16.004 0C7.165 0 .002 7.163.002 16c0 2.822.737 5.577 2.137 8.003L.015 32l8.2-2.148A15.92 15.92 0 0016.004 32C24.837 32 32 24.837 32 16S24.837 0 16.004 0zm0 29.12a13.08 13.08 0 01-6.678-1.833l-.479-.284-4.965 1.302 1.325-4.842-.312-.497A13.06 13.06 0 012.88 16c0-7.236 5.888-13.12 13.124-13.12S29.12 8.764 29.12 16s-5.88 13.12-13.116 13.12zm7.188-9.826c-.394-.197-2.332-1.15-2.694-1.282-.362-.131-.626-.197-.89.197-.263.394-1.02 1.282-1.25 1.545-.23.263-.46.296-.854.099-.394-.197-1.664-.613-3.17-1.956-1.172-1.044-1.963-2.334-2.193-2.728-.23-.394-.025-.607.173-.803.177-.177.394-.46.591-.69.197-.23.263-.394.394-.657.131-.263.066-.493-.033-.69-.099-.197-.89-2.146-1.22-2.94-.321-.772-.648-.668-.89-.68l-.759-.013c-.263 0-.69.099-1.05.493-.362.394-1.382 1.35-1.382 3.293s1.414 3.82 1.611 4.084c.197.263 2.783 4.248 6.742 5.957.942.406 1.678.649 2.252.83.946.3 1.808.258 2.49.157.76-.113 2.332-.953 2.662-1.873.33-.92.33-1.71.23-1.873-.098-.165-.362-.263-.756-.46z"/></svg></a>
+</body>
+</html>

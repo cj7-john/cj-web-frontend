@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — CJ Web Studio | Get in Touch</title>
+  <meta name="description" content="Start your project with CJ Web Studio. Contact us for a free consultation. Based in Durban, serving worldwide.">
+  <link rel="icon" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+
+  <!-- Performance optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://unpkg.com">
+
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <style>
+    .hero__spline, .page-hero__bg { position: absolute !important; inset: 0 !important; overflow: hidden !important; }
+    .hero { position: relative !important; overflow: hidden !important; }
+    .page-hero { position: relative !important; overflow: hidden !important; }
+
+    /* Performance optimizations */
+    .spline-viewer canvas { image-rendering: optimizeSpeed; }
+    .glass-card { contain: layout style paint; }
+    .btn { will-change: transform; }
+
+    /* Lazy loading for images */
+    img[loading="lazy"] {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    img[loading="lazy"].loaded {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo"><img src="assets/images/logo.jpg" alt="CJ Web Studio"><span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span></a>
+      <ul class="navbar__links"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <div class="navbar__actions">
+        <a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener" class="navbar__social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="mailto:cibangukaj@gmail.com" class="navbar__social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 8 10 6 10-6"/></svg></a>
+        <a href="contact.html" class="btn btn--primary btn--sm">Start a Project <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      </div>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html" class="btn btn--primary" style="margin-top:2rem;width:fit-content">Start a Project</a></div>
+
+  <!-- PAGE HERO (with Spline scene) -->
+  <section class="page-hero">
+    <div class="page-hero__bg" data-spline-scene="scenes/scene_4.splinecode"></div>
+    <div class="page-hero__overlay" style="background:linear-gradient(to bottom, hsla(228,32%,7%,0.6) 0%, hsla(228,32%,7%,0.98) 100%)"></div>
+    <div class="page-hero__content">
+      <span class="eyebrow">Get in Touch</span>
+      <h1>Let's Start <span class="gradient-text">Your Project</span></h1>
+      <p>Tell us about your business and we'll get back within 24 hours. Most projects kick off within 48 hours of enquiry.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section section--bg3">
+    <div class="container container--mid">
+
+      <!-- Contact info strip -->
+      <div class="grid grid--3" style="margin-bottom:3rem">
+        <a href="mailto:cibangukaj@gmail.com" class="contact-info-card reveal">
+          <div style="font-size:1.5rem;margin-bottom:0.6rem">📧</div>
+          <div style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.3rem">Email</div>
+          <div style="font-size:0.875rem;font-weight:600;color:var(--text-primary)">cibangukaj@gmail.com</div>
+        </a>
+        <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="contact-info-card reveal" data-delay="1">
+          <div style="font-size:1.5rem;margin-bottom:0.6rem">📱</div>
+          <div style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.3rem">WhatsApp</div>
+          <div style="font-size:0.875rem;font-weight:600;color:var(--text-primary)">+27 81 795 7533</div>
+        </a>
+        <div class="contact-info-card reveal" data-delay="2">
+          <div style="font-size:1.5rem;margin-bottom:0.6rem">📍</div>
+          <div style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.3rem">Location</div>
+          <div style="font-size:0.875rem;font-weight:600;color:var(--text-primary)">Durban, South Africa</div>
+        </div>
+      </div>
+
+      <!-- Success state -->
+      <div id="form-success" style="display:none;text-align:center;padding:5rem 0">
+        <div style="font-size:3rem;margin-bottom:1rem">🎉</div>
+        <h2 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem">Message Sent!</h2>
+        <p style="color:var(--text-secondary);margin-bottom:2rem">We'll get back to you within 24 hours. Check your WhatsApp too!</p>
+
+        <!-- Next Steps Section -->
+        <div class="next-steps" style="background:linear-gradient(135deg, hsla(225,80%,56%,0.05) 0%, hsla(263,70%,60%,0.05) 100%);border-radius:1rem;padding:2rem;margin:2rem 0;border:1px solid hsla(225,80%,56%,0.1)">
+          <h3 style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem">What's Next?</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;text-align:left">
+            <div class="step-card" style="background:var(--bg-primary);border-radius:0.5rem;padding:1.5rem;border:1px solid var(--border-color)">
+              <div style="font-size:1.5rem;margin-bottom:0.5rem">📋</div>
+              <h4 style="font-weight:600;color:var(--text-primary);margin-bottom:0.25rem">Project Review</h4>
+              <p style="font-size:0.875rem;color:var(--text-secondary)">We'll review your requirements and prepare a detailed proposal within 24 hours.</p>
+            </div>
+            <div class="step-card" style="background:var(--bg-primary);border-radius:0.5rem;padding:1.5rem;border:1px solid var(--border-color)">
+              <div style="font-size:1.5rem;margin-bottom:0.5rem">💬</div>
+              <h4 style="font-weight:600;color:var(--text-primary);margin-bottom:0.25rem">Quick Chat</h4>
+              <p style="font-size:0.875rem;color:var(--text-secondary)">Schedule a 15-minute call to discuss your project and answer any questions.</p>
+            </div>
+            <div class="step-card" style="background:var(--bg-primary);border-radius:0.5rem;padding:1.5rem;border:1px solid var(--border-color)">
+              <div style="font-size:1.5rem;margin-bottom:0.5rem">⚡</div>
+              <h4 style="font-weight:600;color:var(--text-primary);margin-bottom:0.25rem">Timeline & Quote</h4>
+              <p style="font-size:0.875rem;color:var(--text-secondary)">Receive a project timeline, detailed quote, and payment terms.</p>
+            </div>
+          </div>
+          <div style="margin-top:2rem;text-align:center">
+            <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="btn btn--primary" style="margin-right:1rem">
+              Chat on WhatsApp
+              <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <a href="mailto:cibangukaj@gmail.com" class="btn btn--ghost">
+              Send Another Message
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Messages -->
+      <div id="form-errors" style="display:none;margin-bottom:2rem;padding:1rem;border-radius:0.5rem;background:hsla(0,70%,50%,0.1);border:1px solid hsla(0,70%,50%,0.2)">
+        <div style="display:flex;align-items:flex-start;gap:0.75rem">
+          <div style="font-size:1.25rem;color:hsla(0,70%,50%,1)">⚠️</div>
+          <div>
+            <h4 style="font-weight:600;color:hsla(0,70%,50%,1);margin-bottom:0.25rem">Please check the following:</h4>
+            <ul id="error-list" style="margin:0;padding-left:1rem;color:hsla(0,70%,50%,1);font-size:0.875rem"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass form card -->
+      <div class="glass-card" style="padding:2.5rem;reveal" id="contact-form-wrapper">
+        <div style="margin-bottom:2rem">
+          <span class="eyebrow">Project Brief</span>
+          <h2 style="font-size:1.4rem;font-weight:700;letter-spacing:-0.02em;margin-top:0.25rem">Tell us what you're building</h2>
+        </div>
+
+        <form id="contactForm" method="post" action="" novalidate>
+          {% csrf_token %}
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem" class="form-row">
+            <div>
+              <label class="form-label">Name *</label>
+              <input name="name" required class="form-input" placeholder="Your full name">
+            </div>
+            <div>
+              <label class="form-label">Email *</label>
+              <input name="email" type="email" required class="form-input" placeholder="your@email.com">
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem" class="form-row">
+            <div>
+              <label class="form-label">Phone</label>
+              <input name="phone" class="form-input" placeholder="+27 ...">
+            </div>
+            <div>
+              <label class="form-label">Business Name</label>
+              <input name="business" class="form-input" placeholder="Your business">
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem" class="form-row">
+            <div>
+              <label class="form-label">Project Type</label>
+              <select name="type" class="form-input">
+                <option value="">Select...</option>
+                <option>Landing Page</option>
+                <option>Business Website (5+ pages)</option>
+                <option>Web App / Portal</option>
+                <option>E-Commerce</option>
+                <option>3D / Interactive</option>
+                <option>CAD / Architectural Drawing</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Budget Range</label>
+              <select name="budget" class="form-input">
+                <option value="">Select...</option>
+                <option>R2,500 – R5,000</option>
+                <option>R5,000 – R12,000</option>
+                <option>R12,000 – R25,000</option>
+                <option>R25,000+</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom:1.75rem">
+            <label class="form-label">Project Details</label>
+            <textarea name="message" rows="5" class="form-input" style="resize:none" placeholder="Tell us about your project, goals, and any specific features you need..."></textarea>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <button type="submit" class="btn btn--primary">
+              Send Message
+              <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </button>
+            <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">
+              Chat on WhatsApp instead
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Process assurance below form -->
+      <div class="grid grid--3" style="margin-top:2rem">
+        <div class="payment-step reveal">
+          <div class="payment-step__num">1</div>
+          <h4 style="font-family:var(--font-heading);font-size:0.875rem;font-weight:700;color:var(--text-primary);margin-bottom:0.35rem">Send Your Brief</h4>
+          <p style="font-size:0.8rem;color:var(--text-secondary)">Fill the form above — takes 2 minutes</p>
+        </div>
+        <div class="payment-step reveal" data-delay="1">
+          <div class="payment-step__num">2</div>
+          <h4 style="font-family:var(--font-heading);font-size:0.875rem;font-weight:700;color:var(--text-primary);margin-bottom:0.35rem">We Reply in 24hrs</h4>
+          <p style="font-size:0.8rem;color:var(--text-secondary)">Quote, timeline, and next steps</p>
+        </div>
+        <div class="payment-step reveal" data-delay="2">
+          <div class="payment-step__num">3</div>
+          <h4 style="font-family:var(--font-heading);font-size:0.875rem;font-weight:700;color:var(--text-primary);margin-bottom:0.35rem">50% Deposit to Start</h4>
+          <p style="font-size:0.8rem;color:var(--text-secondary)">Balance paid on completion before go-live</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="index.html" class="navbar__logo"><img src="assets/images/logo.jpg" alt="CJ" style="width:30px;height:30px;border-radius:6px"><span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span></a><p>Premium web design &amp; development for South African businesses. Based in Durban.</p></div>
+      <div><h4 class="footer__heading">Pages</h4><div class="footer__links"><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></div>
+      <div><h4 class="footer__heading">Services</h4><div class="footer__links"><span>UI/UX Design</span><span>Web Development</span><span>App Development</span><span>3D &amp; Interactive</span><span>SEO &amp; Performance</span></div></div>
+      <div><h4 class="footer__heading">Connect</h4><div class="footer__links"><a href="mailto:cibangukaj@gmail.com">cibangukaj@gmail.com</a><a href="https://wa.me/27817957533" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener">Instagram</a><a href="https://github.com/cj7-john" target="_blank" rel="noopener">GitHub</a></div></div>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2025 CJ Web Studio. All rights reserved.</span><span>Durban, South Africa 🇿🇦</span></div>
+  </div></footer>
+  <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32"><path d="M16.004 0C7.165 0 .002 7.163.002 16c0 2.822.737 5.577 2.137 8.003L.015 32l8.2-2.148A15.92 15.92 0 0016.004 32C24.837 32 32 24.837 32 16S24.837 0 16.004 0zm0 29.12a13.08 13.08 0 01-6.678-1.833l-.479-.284-4.965 1.302 1.325-4.842-.312-.497A13.06 13.06 0 012.88 16c0-7.236 5.888-13.12 13.124-13.12S29.12 8.764 29.12 16s-5.88 13.12-13.116 13.12zm7.188-9.826c-.394-.197-2.332-1.15-2.694-1.282-.362-.131-.626-.197-.89.197-.263.394-1.02 1.282-1.25 1.545-.23.263-.46.296-.854.099-.394-.197-1.664-.613-3.17-1.956-1.172-1.044-1.963-2.334-2.193-2.728-.23-.394-.025-.607.173-.803.177-.177.394-.46.591-.69.197-.23.263-.394.394-.657.131-.263.066-.493-.033-.69-.099-.197-.89-2.146-1.22-2.94-.321-.772-.648-.668-.89-.68l-.759-.013c-.263 0-.69.099-1.05.493-.362.394-1.382 1.35-1.382 3.293s1.414 3.82 1.611 4.084c.197.263 2.783 4.248 6.742 5.957.942.406 1.678.649 2.252.83.946.3 1.808.258 2.49.157.76-.113 2.332-.953 2.662-1.873.33-.92.33-1.71.23-1.873-.098-.165-.362-.263-.756-.46z"/></svg></a>
+
+  <style>
+    @media (max-width:640px) {
+      .form-row { grid-template-columns: 1fr !important; }
+    }
+  </style>
+
+  <script>
+    // Performance: Lazy load images
+    document.addEventListener('DOMContentLoaded', function() {
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      lazyImages.forEach(img => {
+        img.addEventListener('load', () => img.classList.add('loaded'));
+      });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const form = this;
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div style="display:flex;align-items:center;gap:0.5rem"><div class="spinner" style="width:16px;height:16px;border:2px solid transparent;border-top:2px solid currentColor;border-radius:50%;animation:spin 1s linear infinite"></div> Sending...</div>';
+
+      // Hide previous messages
+      document.getElementById('form-success').style.display = 'none';
+      document.getElementById('form-errors').style.display = 'none';
+
+      try {
+        const endpoint = form.action || window.location.href;
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Success
+          document.getElementById('form-success').style.display = 'block';
+          document.getElementById('contact-form-wrapper').style.display = 'none';
+          form.reset();
+
+          // Scroll to success message with smooth animation
+          document.getElementById('form-success').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+
+        } else {
+          // Error
+          const errorDiv = document.getElementById('form-errors');
+          const errorList = document.getElementById('error-list');
+          errorList.innerHTML = '';
+
+          if (result.errors) {
+            // Field-specific errors
+            Object.entries(result.errors).forEach(([field, messages]) => {
+              messages.forEach(message => {
+                const li = document.createElement('li');
+                li.textContent = `${field}: ${message}`;
+                errorList.appendChild(li);
+              });
+            });
+          } else if (result.message) {
+            const li = document.createElement('li');
+            li.textContent = result.message;
+            errorList.appendChild(li);
+          } else {
+            const li = document.createElement('li');
+            li.textContent = 'An unexpected error occurred. Please try again.';
+            errorList.appendChild(li);
+          }
+
+          errorDiv.style.display = 'block';
+          errorDiv.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }
+
+      } catch (error) {
+        console.error('Form submission error:', error);
+        // Network error
+        const errorDiv = document.getElementById('form-errors');
+        const errorList = document.getElementById('error-list');
+        errorList.innerHTML = '<li>Network error. Please check your connection and try again.</li>';
+        errorDiv.style.display = 'block';
+        errorDiv.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      } finally {
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+
+    // Add CSS animation for spinner and performance optimizations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .next-steps .step-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .next-steps .step-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px hsla(225,80%,56%,0.15);
+      }
+      /* Performance: Reduce paint on scroll */
+      .navbar { contain: layout style paint; }
+      .glass-card { contain: layout style paint; }
+    `;
+    document.head.appendChild(style);
+  </script>
+
+</body>
+</html>

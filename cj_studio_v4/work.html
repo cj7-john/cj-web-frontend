@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work — CJ Web Studio | Portfolio</title>
+  <meta name="description" content="Real projects, real results. See our portfolio of websites, web apps, and 3D interactive experiences built for South African businesses.">
+  <link rel="icon" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <style>
+    .hero__spline, .page-hero__bg { position:absolute!important; inset:0!important; overflow:hidden; }
+    .hero { position:relative!important; overflow:hidden!important; }
+    .page-hero { position:relative!important; overflow:hidden!important; }
+
+    /* ── Featured project — full showcase ── */
+    .featured-project {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 4rem 0;
+    }
+    @media (max-width: 900px) {
+      .featured-project { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* ── Browser mockup ── */
+    .browser-mockup {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px hsla(0,0%,0%,0.5), 0 0 0 1px hsla(255,60%,80%,0.08);
+      transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo);
+    }
+    .browser-mockup:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 60px 120px hsla(225,80%,56%,0.25), 0 0 0 1px hsla(225,80%,70%,0.15);
+    }
+    .browser-bar {
+      background: hsl(228,22%,13%);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid hsl(228,18%,18%);
+    }
+    .browser-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .browser-dot--r { background: #ff5f57; }
+    .browser-dot--y { background: #ffbd2e; }
+    .browser-dot--g { background: #28c840; }
+    .browser-url-bar {
+      flex: 1;
+      background: hsl(228,22%,17%);
+      border-radius: 6px;
+      height: 22px;
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 6px;
+    }
+    .browser-url-bar span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+    .browser-url-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+    }
+
+    /* ── Scroll strip of screenshots ── */
+    .screenshot-strip {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      background: hsl(228,22%,10%);
+    }
+    .screenshot-strip__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: transform 0s;
+      will-change: transform;
+    }
+    .screenshot-strip img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* Pause strip on hover, animate on scroll */
+    .browser-mockup:hover .screenshot-strip__inner {
+      animation-play-state: paused;
+    }
+    .screenshot-strip__inner {
+      animation: screenshotScroll 28s linear infinite;
+    }
+    @keyframes screenshotScroll {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+
+    /* ── Project info panel ── */
+    .project-info {}
+    .project-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--blue-light);
+      margin-bottom: 1.25rem;
+    }
+    .project-live-badge {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--green);
+      background: hsla(155,70%,45%,0.12);
+      border: 1px solid hsla(155,70%,45%,0.28);
+      border-radius: var(--radius-full);
+      padding: 0.2rem 0.65rem;
+      margin-left: 0.75rem;
+    }
+    .project-live-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 6px var(--green);
+      animation: blink 2s infinite;
+    }
+    .project-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 1rem;
+    }
+    .project-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+    .project-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+    }
+    .project-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .project-feature-icon {
+      width: 28px; height: 28px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .project-stack {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 2rem;
+    }
+    .project-stack__pill {
+      font-size: 0.65rem; font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 0.2rem 0.65rem;
+    }
+    .project-url {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--blue-light);
+      opacity: 0.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Page count strip ── */
+    .page-count-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .page-count-item {
+      text-align: center;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1.25rem;
+    }
+    .page-count-val {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .page-count-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ── Other projects grid ── */
+    .other-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 900px) { .other-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .other-grid { grid-template-columns: 1fr; } }
+
+    .other-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+    .other-card:hover {
+      border-color: hsla(225,80%,70%,0.28);
+      box-shadow: 0 16px 48px hsla(225,80%,56%,0.15);
+      transform: translateY(-3px);
+    }
+    .other-card__thumb {
+      height: 140px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .other-card__body {
+      padding: 1.1rem 1.25rem 1.4rem;
+    }
+    .other-card__tag {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--blue-light);
+      margin-bottom: 0.4rem; display: block;
+    }
+    .other-card__title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.95rem; color: var(--text-primary);
+      margin-bottom: 0.4rem; line-height: 1.3;
+    }
+    .other-card__desc {
+      font-size: 0.78rem; color: var(--text-muted); line-height: 1.6;
+    }
+
+    /* ── Behind the scenes ── */
+    .bts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) { .bts-grid { grid-template-columns: 1fr; } }
+    .bts-item {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+    .bts-item:hover { border-color: hsla(225,80%,70%,0.25); transform: translateY(-3px); box-shadow: 0 12px 40px hsla(225,80%,56%,0.12); }
+    .bts-visual {
+      height: 150px; display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; position: relative;
+    }
+    .bts-body { padding: 1.2rem 1.25rem 1.4rem; }
+    .bts-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 0.35rem; }
+    .bts-title { font-family: var(--font-heading); font-weight: 700; color: var(--text-primary); font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .bts-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="assets/images/logo.jpg" alt="CJ Web Studio">
+        <span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener" class="navbar__social">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="mailto:cibangukaj@gmail.com" class="navbar__social">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 8 10 6 10-6"/></svg>
+        </a>
+        <a href="contact.html" class="btn btn--primary btn--sm">
+          Start a Project
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a><a href="services.html">Services</a>
+    <a href="work.html">Work</a><a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary" style="margin-top:2rem;width:fit-content">Start a Project</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero__bg" data-spline-scene="scenes/scene_3.splinecode"></div>
+    <div class="page-hero__grid-bg"></div>
+    <div class="page-hero__orb"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="eyebrow">Portfolio</span>
+      <h1>Work That <span class="gradient-text">Speaks for Itself</span></h1>
+      <p>Real projects. Real results. Hand-coded from scratch — zero templates, zero shortcuts.</p>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURED: MAESTRO WINE RESTAURANT ═══ -->
+  <section class="section section--bg3">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Featured Project</span>
+        <h2 class="section-title">Our Best <span class="gradient-text">Work in Action</span></h2>
+        <p>A premium full-stack restaurant website — every page, live and delivered.</p>
+      </div>
+
+      <div class="featured-project reveal">
+
+        <!-- Left: Scrolling browser mockup -->
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <span class="browser-dot browser-dot--r"></span>
+            <span class="browser-dot browser-dot--y"></span>
+            <span class="browser-dot browser-dot--g"></span>
+            <div class="browser-url-bar">
+              <span class="browser-url-dot"></span>
+              <span>celebrated-otter-1e2d2e.netlify.app</span>
+            </div>
+          </div>
+          <div class="screenshot-strip">
+            <!-- Duplicate images for seamless loop -->
+            <div class="screenshot-strip__inner" id="maestroStrip">
+              <img src="assets/images/maestro/hero.png" alt="Maestro Home" loading="lazy">
+              <img src="assets/images/maestro/story.png" alt="Maestro Story" loading="lazy">
+              <img src="assets/images/maestro/dishes.png" alt="Maestro Dishes" loading="lazy">
+              <img src="assets/images/maestro/menu.png" alt="Maestro Menu" loading="lazy">
+              <img src="assets/images/maestro/about_philosophy.png" alt="Maestro Philosophy" loading="lazy">
+              <img src="assets/images/maestro/about_reviews.png" alt="Maestro Reviews" loading="lazy">
+              <img src="assets/images/maestro/wine_world.png" alt="Maestro Wine" loading="lazy">
+              <img src="assets/images/maestro/wine_tiers.png" alt="Maestro Tiers" loading="lazy">
+              <img src="assets/images/maestro/events_cards.png" alt="Maestro Events" loading="lazy">
+              <img src="assets/images/maestro/contact_locations.png" alt="Maestro Contact" loading="lazy">
+              <!-- Duplicate for seamless -->
+              <img src="assets/images/maestro/hero.png" alt="Maestro Home" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/story.png" alt="Maestro Story" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/dishes.png" alt="Maestro Dishes" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/menu.png" alt="Maestro Menu" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/about_philosophy.png" alt="Maestro Philosophy" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/about_reviews.png" alt="Maestro Reviews" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/wine_world.png" alt="Maestro Wine" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/wine_tiers.png" alt="Maestro Tiers" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/events_cards.png" alt="Maestro Events" loading="lazy" aria-hidden="true">
+              <img src="assets/images/maestro/contact_locations.png" alt="Maestro Contact" loading="lazy" aria-hidden="true">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Project info -->
+        <div class="project-info reveal" data-delay="1">
+          <div class="project-eyebrow">
+            Client Work
+            <span class="project-live-badge">
+              <span class="project-live-dot"></span>
+              Live on Netlify
+            </span>
+          </div>
+
+          <h2 class="project-title">Maestro Wine<br>Restaurant</h2>
+
+          <p class="project-desc">A full 8-page premium restaurant website for Maestro Wine Restaurant — serving Umhlanga &amp; Ballito, KwaZulu-Natal. From an animated hero to a live booking system with a password-protected admin dashboard, every detail is intentional.</p>
+
+          <div class="page-count-row">
+            <div class="page-count-item">
+              <div class="page-count-val gradient-text">8</div>
+              <div class="page-count-label">Pages</div>
+            </div>
+            <div class="page-count-item">
+              <div class="page-count-val gradient-text">2</div>
+              <div class="page-count-label">Locations</div>
+            </div>
+            <div class="page-count-item">
+              <div class="page-count-val gradient-text">98</div>
+              <div class="page-count-label">PageSpeed</div>
+            </div>
+            <div class="page-count-item">
+              <div class="page-count-val gradient-text">∞</div>
+              <div class="page-count-label">Bookings</div>
+            </div>
+          </div>
+
+          <div class="project-features">
+            <div class="project-feature"><span class="project-feature-icon">📅</span> Live booking form → Google Sheets database</div>
+            <div class="project-feature"><span class="project-feature-icon">📧</span> Dual EmailJS confirmation (guest + restaurant)</div>
+            <div class="project-feature"><span class="project-feature-icon">🔐</span> Password-protected admin dashboard</div>
+            <div class="project-feature"><span class="project-feature-icon">🍷</span> Wine Club membership tiers (Silver / Gold / Elite)</div>
+            <div class="project-feature"><span class="project-feature-icon">🎉</span> Events system — Private Dining, Corporate Dinners</div>
+            <div class="project-feature"><span class="project-feature-icon">📱</span> Fully responsive — mobile, tablet, desktop</div>
+          </div>
+
+          <div class="project-url">celebrated-otter-1e2d2e.netlify.app</div>
+
+          <div class="project-stack">
+            <span class="project-stack__pill">HTML/CSS</span>
+            <span class="project-stack__pill">Vanilla JS</span>
+            <span class="project-stack__pill">EmailJS</span>
+            <span class="project-stack__pill">Google Sheets API</span>
+            <span class="project-stack__pill">Apps Script</span>
+            <span class="project-stack__pill">Netlify</span>
+            <span class="project-stack__pill">Cormorant Garamond</span>
+            <span class="project-stack__pill">Gold + Charcoal</span>
+          </div>
+
+          <a href="https://celebrated-otter-1e2d2e.netlify.app" target="_blank" rel="noopener" class="btn btn--primary">
+            View Live Site
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ OTHER PROJECTS ═══ -->
+  <section class="section section--bg1">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">More Work</span>
+        <h2 class="section-title">50+ Projects. <span class="gradient-text">Zero Templates.</span></h2>
+        <p>Every project is hand-coded from scratch for the client's exact brand and audience.</p>
+      </div>
+
+      <div class="other-grid">
+
+        <div class="other-card reveal">
+          <div class="other-card__thumb" style="background:linear-gradient(135deg,hsl(263,50%,10%),hsl(228,40%,8%))">
+            <span style="position:relative;z-index:1">🎮</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,hsla(263,80%,50%,0.18),transparent 65%)"></div>
+          </div>
+          <div class="other-card__body">
+            <span class="other-card__tag">Gaming · Web App · Interactive</span>
+            <div class="other-card__title">Gaming Platform — Web Experience</div>
+            <p class="other-card__desc">Immersive gaming brand website with animated hero, leaderboard, and real-time session display. Dark cyberpunk aesthetic with violet neon accents.</p>
+          </div>
+        </div>
+
+        <div class="other-card reveal" data-delay="1">
+          <div class="other-card__thumb" style="background:linear-gradient(135deg,hsl(30,30%,10%),hsl(25,25%,8%))">
+            <span style="position:relative;z-index:1">☕</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 40% 60%,hsla(30,70%,40%,0.18),transparent 65%)"></div>
+          </div>
+          <div class="other-card__body">
+            <span class="other-card__tag">Premium Brand · 3 Locations · Booking</span>
+            <div class="other-card__title">Saxony Coffee — Brand Website</div>
+            <p class="other-card__desc">Warm editorial aesthetic, live menu data, real brand photography, and an integrated booking system across 3 Durban locations.</p>
+          </div>
+        </div>
+
+        <div class="other-card reveal" data-delay="2">
+          <div class="other-card__thumb" style="background:linear-gradient(135deg,hsl(199,40%,8%),hsl(225,35%,8%))">
+            <span style="position:relative;z-index:1">🛼</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,hsla(199,80%,50%,0.15),transparent 65%)"></div>
+          </div>
+          <div class="other-card__body">
+            <span class="other-card__tag">Activity Venue · Booking</span>
+            <div class="other-card__title">Roller Zone — Activity Centre</div>
+            <p class="other-card__desc">Energetic activity venue site for the Saxony Group with session booking, pricing table, and WhatsApp integration.</p>
+          </div>
+        </div>
+
+        <div class="other-card reveal">
+          <div class="other-card__thumb" style="background:linear-gradient(135deg,hsl(130,30%,8%),hsl(155,30%,8%))">
+            <span style="position:relative;z-index:1">🎾</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,hsla(130,70%,45%,0.15),transparent 65%)"></div>
+          </div>
+          <div class="other-card__body">
+            <span class="other-card__tag">Sports · Court Booking</span>
+            <div class="other-card__title">Padel Durban — Courts Platform</div>
+            <p class="other-card__desc">Sports venue site with court booking, membership tiers, and club info. Mobile-first, fast, clean.</p>
+          </div>
+        </div>
+
+        <div class="other-card reveal" data-delay="1">
+          <div class="other-card__thumb" style="background:var(--bg-surface2)">
+            <span style="position:relative;z-index:1">⚡</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,hsla(225,80%,56%,0.14),transparent 65%)"></div>
+          </div>
+          <div class="other-card__body">
+            <span class="other-card__tag">Agency Site · 3D Interactive</span>
+            <div class="other-card__title">CJ Web Studio Website</div>
+            <p class="other-card__desc">This very site. Dark navy glassmorphism, Spline 3D scenes, Syne + DM Sans, 11 sections, fully responsive.</p>
+          </div>
+        </div>
+
+        <div class="other-card reveal" data-delay="2">
+          <div class="other-card__thumb" style="background:linear-gradient(135deg,hsl(35,20%,9%),hsl(25,20%,8%))">
+            <span style="position:relative;z-index:1">🏠</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 40% 60%,hsla(38,70%,50%,0.12),transparent 65%)"></div>
+          </div>
+          <div class="other-card__body">
+            <span class="other-card__tag">CAD · ArchiCAD</span>
+            <div class="other-card__title">Residential Floor Plan Set</div>
+            <p class="other-card__desc">Professional 3-sheet vector drawing set for a two-storey residential project. Technical drawings for building submission.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BEHIND THE SCENES -->
+  <section class="section section--bg2">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Behind the Scenes</span>
+        <h2 class="section-title">How We <span class="gradient-text">Make It</span></h2>
+        <p>The craft and process behind every project we ship.</p>
+      </div>
+      <div class="bts-grid">
+        <div class="bts-item reveal">
+          <div class="bts-visual" style="background:linear-gradient(135deg,hsl(228,32%,10%),hsl(225,40%,8%))">
+            <span style="position:relative;z-index:1">🎨</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,hsla(225,80%,56%,0.12),transparent 65%)"></div>
+          </div>
+          <div class="bts-body">
+            <div class="bts-label">Step 01 — Design</div>
+            <div class="bts-title">Pixels Before Code</div>
+            <p class="bts-desc">Every project starts in Figma. We map user flows, define visual hierarchy, and prototype before a single line of HTML is written.</p>
+          </div>
+        </div>
+        <div class="bts-item reveal" data-delay="1">
+          <div class="bts-visual" style="background:linear-gradient(135deg,hsl(263,40%,10%),hsl(228,40%,8%))">
+            <span style="position:relative;z-index:1">⌨️</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,hsla(263,70%,60%,0.12),transparent 65%)"></div>
+          </div>
+          <div class="bts-body">
+            <div class="bts-label">Step 02 — Build</div>
+            <div class="bts-title">Hand-Written Code</div>
+            <p class="bts-desc">Clean HTML, CSS, and JS from scratch. No page builders, no bloat. Every animation crafted by hand. You get source files you own forever.</p>
+          </div>
+        </div>
+        <div class="bts-item reveal" data-delay="2">
+          <div class="bts-visual" style="background:linear-gradient(135deg,hsl(155,30%,8%),hsl(228,40%,8%))">
+            <span style="position:relative;z-index:1">🚀</span>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,hsla(155,70%,45%,0.12),transparent 65%)"></div>
+          </div>
+          <div class="bts-body">
+            <div class="bts-label">Step 03 — Ship</div>
+            <div class="bts-title">Live in Days</div>
+            <p class="bts-desc">Deployed on Netlify or Vercel, tested across all devices, 98+ PageSpeed, then handed off with all source files. You own everything.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--bg1 cta-section">
+    <div class="cta-section__glow"></div>
+    <div class="container container--narrow" style="position:relative;text-align:center">
+      <h2 class="section-title reveal">Want Results <span class="gradient-text">Like These?</span></h2>
+      <p class="reveal" data-delay="1" style="color:var(--text-secondary);margin:1rem 0 2.5rem">Your project could be next. Let's build something that grows your business.</p>
+      <div class="reveal" data-delay="2" style="display:flex;justify-content:center;gap:0.875rem;flex-wrap:wrap">
+        <a href="contact.html" class="btn btn--primary">Start a Project <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        <a href="services.html" class="btn btn--ghost">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="index.html" class="navbar__logo"><img src="assets/images/logo.jpg" alt="CJ" style="width:30px;height:30px;border-radius:6px"><span>CJ <em style="font-style:normal" class="gradient-text">Web Studio</em></span></a><p>Premium web design &amp; development for South African businesses. Based in Durban.</p></div>
+      <div><h4 class="footer__heading">Pages</h4><div class="footer__links"><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></div>
+      <div><h4 class="footer__heading">Services</h4><div class="footer__links"><span>UI/UX Design</span><span>Web Development</span><span>App Development</span><span>3D &amp; Interactive</span><span>SEO &amp; Performance</span></div></div>
+      <div><h4 class="footer__heading">Connect</h4><div class="footer__links"><a href="mailto:cibangukaj@gmail.com">cibangukaj@gmail.com</a><a href="https://wa.me/27817957533" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/cjwebstudio" target="_blank" rel="noopener">Instagram</a><a href="https://github.com/cj7-john" target="_blank" rel="noopener">GitHub</a></div></div>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2025 CJ Web Studio. All rights reserved.</span><span>Durban, South Africa 🇿🇦</span></div>
+  </div></footer>
+  <a href="https://wa.me/27817957533" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32"><path d="M16.004 0C7.165 0 .002 7.163.002 16c0 2.822.737 5.577 2.137 8.003L.015 32l8.2-2.148A15.92 15.92 0 0016.004 32C24.837 32 32 24.837 32 16S24.837 0 16.004 0zm0 29.12a13.08 13.08 0 01-6.678-1.833l-.479-.284-4.965 1.302 1.325-4.842-.312-.497A13.06 13.06 0 012.88 16c0-7.236 5.888-13.12 13.124-13.12S29.12 8.764 29.12 16s-5.88 13.12-13.116 13.12zm7.188-9.826c-.394-.197-2.332-1.15-2.694-1.282-.362-.131-.626-.197-.89.197-.263.394-1.02 1.282-1.25 1.545-.23.263-.46.296-.854.099-.394-.197-1.664-.613-3.17-1.956-1.172-1.044-1.963-2.334-2.193-2.728-.23-.394-.025-.607.173-.803.177-.177.394-.46.591-.69.197-.23.263-.394.394-.657.131-.263.066-.493-.033-.69-.099-.197-.89-2.146-1.22-2.94-.321-.772-.648-.668-.89-.68l-.759-.013c-.263 0-.69.099-1.05.493-.362.394-1.382 1.35-1.382 3.293s1.414 3.82 1.611 4.084c.197.263 2.783 4.248 6.742 5.957.942.406 1.678.649 2.252.83.946.3 1.808.258 2.49.157.76-.113 2.332-.953 2.662-1.873.33-.92.33-1.71.23-1.873-.098-.165-.362-.263-.756-.46z"/></svg></a>
+</body>
+</html>
