@@ -1,140 +1,121 @@
 /* ═══════════════════════════════════════════════════
    CJ Web Studio v4 — Scene Loader + Fallback + FX
-   Priority: Spline 3D → Canvas Orb fallback
+   Strategy:
+     - Spline loads with opacity:0, fades in on load event
+     - Canvas orb ONLY fires if Spline script fails entirely
+     - Contact page gets no Spline (grid-bg + orb CSS only)
+     - Watermark removed via shadow DOM + injected style
    ═══════════════════════════════════════════════════ */
 
 (function () {
   'use strict';
 
-  /* ─────────────────────────────────────────────────
-     SPLINE LOADER — supports multiple scenes with mouse interactions
-  ───────────────────────────────────────────────── */
-  var SPLINE_TIMEOUT = 9000; // ms before fallback kicks in
+  // ── Skip Spline on contact page ──────────────────
+  var isContactPage = window.location.pathname.includes('contact');
 
+  /* ─────────────────────────────────────────────────
+     SPLINE LOADER
+  ───────────────────────────────────────────────── */
   function loadSplineScenes() {
     var containers = document.querySelectorAll('[data-spline-scene]');
-    var loadedScenes = new Map(); // Track loaded scenes
 
-    containers.forEach(function(container) {
+    containers.forEach(function (container) {
       var sceneUrl = container.getAttribute('data-spline-scene');
-      if (!sceneUrl || container.dataset.orbBuilt) return;
+      if (!sceneUrl) return;
 
-      // Create the web component
+      // Start hidden — will fade in on load
+      container.style.opacity = '0';
+      container.style.transition = 'opacity 0.9s ease';
+
       var viewer = document.createElement('spline-viewer');
       viewer.setAttribute('url', sceneUrl);
       viewer.setAttribute('loading-anim-type', 'none');
-      viewer.style.cssText = 'width:100%;height:100%;display:block;position:absolute;inset:0;pointer-events:auto;';
+      viewer.style.cssText = [
+        'width:100%',
+        'height:100%',
+        'display:block',
+        'position:absolute',
+        'inset:0',
+        'pointer-events:none',  // don't block page interaction
+      ].join(';');
 
       var loaded = false;
-      var splineApp = null;
 
-      viewer.addEventListener('load', function() {
+      viewer.addEventListener('load', function () {
         loaded = true;
-        container.classList.add('spline-loaded');
 
-        // Get the Spline application instance for mouse interactions
-        try {
-          splineApp = viewer.getApplication();
-          if (splineApp) {
-            loadedScenes.set(container, splineApp);
+        // Fade in smoothly
+        requestAnimationFrame(function () {
+          container.style.opacity = '1';
+          container.classList.add('spline-loaded');
+        });
 
-            // Add mouse hover interactions
-            setupMouseInteractions(container, splineApp);
-          }
-        } catch(e) {
-          console.warn('Could not get Spline application instance:', e);
-        }
-
-        // Hide Spline watermark
-        try {
-          var shadow = viewer.shadowRoot;
-          if (shadow) {
-            var logo = shadow.querySelector('#logo');
-            if (logo) logo.style.display = 'none';
-            // Inject style to hide watermark
-            var style = document.createElement('style');
-            style.textContent = '#logo { display:none!important; } a[href*="spline"] { display:none!important; }';
-            shadow.appendChild(style);
-          }
-        } catch(e) {}
+        // Watermark removal — try multiple shadow DOM paths
+        hideSplineWatermark(viewer);
       });
 
       container.appendChild(viewer);
 
-      // Fallback: if Spline hasn't loaded after timeout, show canvas orb
-      setTimeout(function() {
-        if (!loaded && !container.dataset.orbBuilt) {
-          console.warn('Spline timeout — activating canvas fallback for:', sceneUrl);
-          viewer.remove();
-          buildOrbCanvas(container);
-        }
-      }, SPLINE_TIMEOUT);
+      // No canvas fallback on timeout — just leave it loading
+      // Canvas orb only fires on script load failure (see initScenes)
     });
   }
 
   /* ─────────────────────────────────────────────────
-     MOUSE INTERACTIONS FOR SPLINE SCENES
+     WATERMARK REMOVAL
+     Spline's shadow DOM structure varies by version.
+     We target every known selector.
   ───────────────────────────────────────────────── */
-  function setupMouseInteractions(container, splineApp) {
-    if (!splineApp) return;
+  function hideSplineWatermark(viewer) {
+    var attempts = 0;
+    var maxAttempts = 20;
 
-    var isHovering = false;
-    var mousePos = { x: 0, y: 0 };
-
-    // Mouse enter - enable interactions
-    container.addEventListener('mouseenter', function(e) {
-      isHovering = true;
-      mousePos.x = e.clientX;
-      mousePos.y = e.clientY;
-
-      // Trigger hover animation or interaction
+    function tryHide() {
+      attempts++;
       try {
-        // You can customize these interactions based on your Spline scene setup
-        // This is a generic approach - adjust based on your specific scene objects
-        var variables = splineApp.getVariables();
-        if (variables && variables.onHover) {
-          variables.onHover = true;
+        var shadow = viewer.shadowRoot;
+        if (shadow) {
+          // Known watermark selectors across Spline viewer versions
+          var selectors = ['#logo', 'a[href*="spline"]', '[class*="logo"]', '[class*="watermark"]', '[class*="brand"]'];
+          selectors.forEach(function (sel) {
+            shadow.querySelectorAll(sel).forEach(function (el) {
+              el.style.display = 'none';
+              el.style.opacity = '0';
+              el.style.pointerEvents = 'none';
+            });
+          });
+
+          // Inject a persistent style tag into shadow root
+          if (!shadow.querySelector('#cj-hide-watermark')) {
+            var style = document.createElement('style');
+            style.id = 'cj-hide-watermark';
+            style.textContent = [
+              '#logo { display:none!important; }',
+              'a[href*="spline"] { display:none!important; }',
+              '[class*="logo"] { display:none!important; }',
+              '[class*="watermark"] { display:none!important; }',
+              '[class*="brand"] { display:none!important; }',
+              'canvas { cursor:default!important; }',
+            ].join('\n');
+            shadow.appendChild(style);
+          }
         }
-      } catch(e) {}
-    });
+      } catch (e) {}
 
-    // Mouse move - track position for interactions
-    container.addEventListener('mousemove', function(e) {
-      if (!isHovering) return;
+      // Keep retrying for a few seconds in case DOM isn't ready
+      if (attempts < maxAttempts) {
+        setTimeout(tryHide, 300);
+      }
+    }
 
-      mousePos.x = e.clientX;
-      mousePos.y = e.clientY;
-
-      // Convert to normalized coordinates (0-1)
-      var rect = container.getBoundingClientRect();
-      var normalizedX = (e.clientX - rect.left) / rect.width;
-      var normalizedY = (e.clientY - rect.top) / rect.height;
-
-      try {
-        // Update mouse position variables in Spline
-        var variables = splineApp.getVariables();
-        if (variables) {
-          if (variables.mouseX !== undefined) variables.mouseX = normalizedX;
-          if (variables.mouseY !== undefined) variables.mouseY = normalizedY;
-        }
-      } catch(e) {}
-    });
-
-    // Mouse leave - disable interactions
-    container.addEventListener('mouseleave', function(e) {
-      isHovering = false;
-
-      try {
-        var variables = splineApp.getVariables();
-        if (variables && variables.onHover) {
-          variables.onHover = false;
-        }
-      } catch(e) {}
-    });
+    // Start immediately and retry
+    setTimeout(tryHide, 200);
   }
 
   /* ─────────────────────────────────────────────────
-     CANVAS ORB FALLBACK — animated 3D orbit sphere
+     CANVAS ORB FALLBACK
+     Only runs when Spline CDN script fails to load.
+     On contact page: always runs (no Spline there).
   ───────────────────────────────────────────────── */
   function buildOrbCanvas(container) {
     if (container.dataset.orbBuilt) return;
@@ -143,7 +124,7 @@
     var canvas = document.createElement('canvas');
     canvas.style.cssText = 'display:block;position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
     container.appendChild(canvas);
-    container.classList.add('spline-loaded');
+    container.style.opacity = '1';
 
     var ctx = canvas.getContext('2d');
     var W = 1, H = 1, mx = 0.5, my = 0.5, time = 0, raf;
@@ -162,18 +143,11 @@
       new ResizeObserver(resize).observe(container);
     }
     window.addEventListener('resize', resize, { passive: true });
-    requestAnimationFrame(function() { resize(); });
+    requestAnimationFrame(function () { resize(); });
 
-    document.addEventListener('mousemove', function(e) {
+    document.addEventListener('mousemove', function (e) {
       mx = e.clientX / window.innerWidth;
       my = e.clientY / window.innerHeight;
-    }, { passive: true });
-
-    document.addEventListener('touchmove', function(e) {
-      if (e.touches[0]) {
-        mx = e.touches[0].clientX / window.innerWidth;
-        my = e.touches[0].clientY / window.innerHeight;
-      }
     }, { passive: true });
 
     var RINGS = [
@@ -184,10 +158,12 @@
       { n:28,  r:0.15, tilt:-0.30, spd:0.0012,   h:180, s:70, l:58, sz:0.9 },
     ];
 
-    var BLOBS = Array.from({ length: 5 }, function(_, i) {
+    var BLOBS = Array.from({ length: 5 }, function (_, i) {
       return {
-        x: 0.15 + Math.random() * 0.7, y: 0.15 + Math.random() * 0.7,
-        r: 0.12 + Math.random() * 0.18, phase: (i / 5) * Math.PI * 2,
+        x: 0.15 + Math.random() * 0.7,
+        y: 0.15 + Math.random() * 0.7,
+        r: 0.12 + Math.random() * 0.18,
+        phase: (i / 5) * Math.PI * 2,
         spd: 0.00018 + Math.random() * 0.00022,
         h: [225, 263, 290, 199, 210][i],
       };
@@ -201,7 +177,7 @@
       var cy = H  * 0.46 + (my - 0.5) * H  * 0.04;
       var baseR = Math.min(W, H) * (isWide ? 0.22 : 0.28);
 
-      BLOBS.forEach(function(b) {
+      BLOBS.forEach(function (b) {
         var bx = W * (b.x + Math.sin(time * b.spd + b.phase) * 0.09);
         var by = H * (b.y + Math.cos(time * b.spd * 0.7 + b.phase) * 0.07);
         var br = Math.min(W, H) * b.r;
@@ -213,14 +189,14 @@
         ctx.beginPath(); ctx.arc(bx, by, br, 0, Math.PI * 2); ctx.fill();
       });
 
-      var cg = ctx.createRadialGradient(cx - baseR*0.2, cy - baseR*0.25, 0, cx, cy, baseR*1.35);
+      var cg = ctx.createRadialGradient(cx - baseR * 0.2, cy - baseR * 0.25, 0, cx, cy, baseR * 1.35);
       cg.addColorStop(0, 'hsla(225,80%,76%,0.22)');
       cg.addColorStop(0.4, 'hsla(263,70%,65%,0.10)');
       cg.addColorStop(1, 'transparent');
       ctx.fillStyle = cg;
-      ctx.beginPath(); ctx.arc(cx, cy, baseR*1.35, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(cx, cy, baseR * 1.35, 0, Math.PI * 2); ctx.fill();
 
-      RINGS.forEach(function(ring) {
+      RINGS.forEach(function (ring) {
         var angle = time * ring.spd + mx * 0.35;
         var tilt  = ring.tilt + (my - 0.5) * 0.6;
         for (var i = 0; i < ring.n; i++) {
@@ -235,7 +211,7 @@
           var size  = ring.sz * (0.4 + depth * 0.9);
           ctx.beginPath();
           ctx.arc(px, py, Math.max(0.3, size), 0, Math.PI * 2);
-          ctx.fillStyle = 'hsla(' + ring.h + ',' + ring.s + '%,' + (ring.l * (0.55 + depth*0.5)) + '%,' + alpha + ')';
+          ctx.fillStyle = 'hsla(' + ring.h + ',' + ring.s + '%,' + (ring.l * (0.55 + depth * 0.5)) + '%,' + alpha + ')';
           ctx.fill();
         }
       });
@@ -245,47 +221,52 @@
       cd.addColorStop(0.5, 'hsla(225,80%,72%,0.55)');
       cd.addColorStop(1,   'transparent');
       ctx.fillStyle = cd;
-      ctx.beginPath(); ctx.arc(cx, cy, baseR * 0.09, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(cx, cy, baseR * 0.09, 0, Math.PI * 2); ctx.fill();
 
       raf = requestAnimationFrame(draw);
     }
     raf = requestAnimationFrame(draw);
-    window.addEventListener('beforeunload', function() { cancelAnimationFrame(raf); });
+    window.addEventListener('beforeunload', function () { cancelAnimationFrame(raf); });
   }
 
   /* ─────────────────────────────────────────────────
-     LOAD SPLINE RUNTIME + INIT SCENES (Optimized)
+     LOAD SPLINE RUNTIME
   ───────────────────────────────────────────────── */
   function initScenes() {
-    var hasSceneContainers = document.querySelectorAll('[data-spline-scene]').length > 0;
-    if (!hasSceneContainers) return;
+    var containers = document.querySelectorAll('[data-spline-scene]');
+    if (!containers.length) return;
 
-    // Use a more recent, optimized version of Spline viewer
+    // Contact page: skip Spline, no orb either — just CSS ambience
+    if (isContactPage) return;
+
     var script = document.createElement('script');
     script.type = 'module';
     script.src = 'https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js';
 
-    script.onload = function() {
-      // Reduced delay for faster loading
-      setTimeout(loadSplineScenes, 100);
+    script.onload = function () {
+      // Short pause for custom element to register
+      setTimeout(loadSplineScenes, 80);
     };
 
-    script.onerror = function() {
-      console.warn('Spline CDN unavailable — using canvas fallback');
-      document.querySelectorAll('[data-spline-scene]').forEach(buildOrbCanvas);
+    script.onerror = function () {
+      // CDN failed — fall back to canvas orb
+      console.warn('Spline CDN failed — canvas fallback active');
+      containers.forEach(buildOrbCanvas);
     };
 
     document.head.appendChild(script);
 
-    // Optimized CSS injection
+    // Global style: hide watermark from any spline-viewer on the page
     var style = document.createElement('style');
     style.textContent = [
       'spline-viewer { width:100%; height:100%; display:block; }',
       'spline-viewer::part(logo) { display:none!important; }',
-      '.hero__spline, .page-hero__bg { position:absolute!important; inset:0!important; overflow:hidden; }',
-      /* Performance optimizations */
-      'spline-viewer canvas { image-rendering: optimizeSpeed; }',
-      '.spline-loaded { contain: layout style paint; }'
+      'spline-viewer::part(watermark) { display:none!important; }',
+      '.hero__spline, .page-hero__bg {',
+      '  position:absolute!important;',
+      '  inset:0!important;',
+      '  overflow:hidden;',
+      '}',
     ].join('\n');
     document.head.appendChild(style);
   }
@@ -295,17 +276,17 @@
   ───────────────────────────────────────────────── */
   function initTilt() {
     if (!window.matchMedia('(hover: hover)').matches) return;
-    var els = document.querySelectorAll('.card, .bento-cell, .hero-card, .team-card, .portfolio-card, .process-strip__item');
-    els.forEach(function(el) {
-      el.addEventListener('mousemove', function(e) {
+    var els = document.querySelectorAll('.card, .bento-cell, .hero-card, .team-card');
+    els.forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width  - 0.5;
         var y = (e.clientY - r.top)  / r.height - 0.5;
-        var mag = el.classList.contains('portfolio-card') ? 10 : 6;
-        el.style.transform  = 'perspective(900px) rotateY(' + (x*mag) + 'deg) rotateX(' + (-y*mag) + 'deg) translateZ(4px)';
+        var mag = 6;
+        el.style.transform  = 'perspective(900px) rotateY(' + (x * mag) + 'deg) rotateX(' + (-y * mag) + 'deg) translateZ(4px)';
         el.style.transition = 'transform 0.05s linear';
       });
-      el.addEventListener('mouseleave', function() {
+      el.addEventListener('mouseleave', function () {
         el.style.transform  = '';
         el.style.transition = 'transform 0.55s cubic-bezier(0.16,1,0.3,1)';
       });
@@ -316,8 +297,8 @@
      TEAM CARD CURSOR GLOW
   ───────────────────────────────────────────────── */
   function initTeamGlow() {
-    document.querySelectorAll('.team-card').forEach(function(card) {
-      card.addEventListener('mousemove', function(e) {
+    document.querySelectorAll('.team-card').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
         var r = card.getBoundingClientRect();
         card.style.setProperty('--gx', ((e.clientX - r.left) / r.width  * 100) + '%');
         card.style.setProperty('--gy', ((e.clientY - r.top)  / r.height * 100) + '%');
@@ -332,17 +313,17 @@
     if (!window.matchMedia('(hover: hover) and (min-width: 1024px)').matches) return;
     var trail = document.createElement('div');
     Object.assign(trail.style, {
-      position:'fixed', width:'360px', height:'360px', borderRadius:'50%',
-      pointerEvents:'none', zIndex:'0',
-      background:'radial-gradient(circle, hsla(225,80%,56%,0.07) 0%, transparent 70%)',
-      transform:'translate(-50%,-50%)', mixBlendMode:'screen', willChange:'left,top',
+      position: 'fixed', width: '360px', height: '360px', borderRadius: '50%',
+      pointerEvents: 'none', zIndex: '0',
+      background: 'radial-gradient(circle, hsla(225,80%,56%,0.07) 0%, transparent 70%)',
+      transform: 'translate(-50%,-50%)', mixBlendMode: 'screen', willChange: 'left,top',
     });
     document.body.appendChild(trail);
-    var tx=0, ty=0, lx=0, ly=0;
-    document.addEventListener('mousemove', function(e) { tx=e.clientX; ty=e.clientY; }, { passive:true });
+    var tx = 0, ty = 0, lx = 0, ly = 0;
+    document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; }, { passive: true });
     (function loop() {
-      lx += (tx-lx)*0.08; ly += (ty-ly)*0.08;
-      trail.style.left = lx+'px'; trail.style.top = ly+'px';
+      lx += (tx - lx) * 0.08; ly += (ty - ly) * 0.08;
+      trail.style.left = lx + 'px'; trail.style.top = ly + 'px';
       requestAnimationFrame(loop);
     })();
   }
