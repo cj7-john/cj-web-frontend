@@ -1,0 +1,7 @@
+BACKEND_BACKUP/
+CJ_Web_Studio_Backend_v2/
+venv/
+.git/
+node_modules/
+.env
+db.sqlite3

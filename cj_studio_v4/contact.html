@@ -33,10 +33,9 @@
   </nav>
   <div class="mobile-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html" class="btn btn--primary" style="margin-top:2rem;width:fit-content">Start a Project</a></div>
 
-  <!-- PAGE HERO (no Spline — lightweight) -->
+  <!-- PAGE HERO (with Spline scene) -->
   <section class="page-hero">
-    <div class="page-hero__grid-bg"></div>
-    <div class="page-hero__orb"></div>
+    <div class="page-hero__bg" data-spline-scene="scenes/scene_4.splinecode"></div>
     <div class="page-hero__overlay" style="background:linear-gradient(to bottom, hsla(228,32%,7%,0.6) 0%, hsla(228,32%,7%,0.98) 100%)"></div>
     <div class="page-hero__content">
       <span class="eyebrow">Get in Touch</span>
@@ -112,11 +111,11 @@
 
         <form
   id="contactForm"
-  action="https://refreshing-nature.up.railway.app/contact/"
+  name="contact-form"
+  data-netlify="true"
   method="post"
   novalidate
 >
-  <input type="hidden" name="csrfmiddlewaretoken" id="csrfTokenInput" value="">
 
           <div id="contactFeedback" class="form-message" role="status" aria-live="polite"></div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem" class="form-row">
@@ -136,31 +135,31 @@
             </div>
             <div>
               <label class="form-label">Business Name</label>
-              <input name="business" class="form-input" placeholder="Your business">
+              <input name="business_name" class="form-input" placeholder="Your business">
             </div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem" class="form-row">
             <div>
               <label class="form-label">Project Type</label>
-              <select name="type" class="form-input">
+              <select name="project_type" class="form-input">
                 <option value="">Select...</option>
-                <option>Landing Page</option>
-                <option>Business Website (5+ pages)</option>
-                <option>Web App / Portal</option>
-                <option>E-Commerce</option>
-                <option>3D / Interactive</option>
-                <option>CAD / Architectural Drawing</option>
-                <option>Other</option>
+                <option value="landing_page">Landing Page</option>
+                <option value="business_site">Business Website (5+ pages)</option>
+                <option value="web_app">Web App / Portal</option>
+                <option value="ecommerce">E-Commerce</option>
+                <option value="three_d">3D / Interactive</option>
+                <option value="cad">CAD / Architectural Drawing</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div>
               <label class="form-label">Budget Range</label>
               <select name="budget" class="form-input">
                 <option value="">Select...</option>
-                <option>R2,500 – R5,000</option>
-                <option>R5,000 – R12,000</option>
-                <option>R12,000 – R25,000</option>
-                <option>R25,000+</option>
+                <option value="r2500_5000">R2,500 – R5,000</option>
+                <option value="r5000_12000">R5,000 – R12,000</option>
+                <option value="r12000_25000">R12,000 – R25,000</option>
+                <option value="r25000_plus">R25,000+</option>
               </select>
             </div>
           </div>

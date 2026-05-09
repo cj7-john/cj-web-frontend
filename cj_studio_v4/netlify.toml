@@ -1,0 +1,7 @@
+# Contact form → Netlify Forms (No external backend needed).
+#
+# To manage submissions, go to your Netlify dashboard → Forms.
+# 100 submissions per month are free.
+
+[build]
+  publish = "."

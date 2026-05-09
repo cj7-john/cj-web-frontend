@@ -143,8 +143,7 @@
           <h2 style="font-size:1.4rem;font-weight:700;letter-spacing:-0.02em;margin-top:0.25rem">Tell us what you're building</h2>
         </div>
 
-        <form id="contactForm" method="post" action="" novalidate>
-          {% csrf_token %}
+        <form id="contactForm" name="quote-form" data-netlify="true" method="post" action="/" novalidate>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem" class="form-row">
             <div>
               <label class="form-label">Name *</label>
@@ -162,31 +161,31 @@
             </div>
             <div>
               <label class="form-label">Business Name</label>
-              <input name="business" class="form-input" placeholder="Your business">
+              <input name="business_name" class="form-input" placeholder="Your business">
             </div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem" class="form-row">
             <div>
               <label class="form-label">Project Type</label>
-              <select name="type" class="form-input">
+              <select name="project_type" class="form-input">
                 <option value="">Select...</option>
-                <option>Landing Page</option>
-                <option>Business Website (5+ pages)</option>
-                <option>Web App / Portal</option>
-                <option>E-Commerce</option>
-                <option>3D / Interactive</option>
-                <option>CAD / Architectural Drawing</option>
-                <option>Other</option>
+                <option value="landing_page">Landing Page</option>
+                <option value="business_site">Business Website (5+ pages)</option>
+                <option value="web_app">Web App / Portal</option>
+                <option value="ecommerce">E-Commerce</option>
+                <option value="three_d">3D / Interactive</option>
+                <option value="cad">CAD / Architectural Drawing</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div>
               <label class="form-label">Budget Range</label>
               <select name="budget" class="form-input">
                 <option value="">Select...</option>
-                <option>R2,500 – R5,000</option>
-                <option>R5,000 – R12,000</option>
-                <option>R12,000 – R25,000</option>
-                <option>R25,000+</option>
+                <option value="r2500_5000">R2,500 – R5,000</option>
+                <option value="r5000_12000">R5,000 – R12,000</option>
+                <option value="r12000_25000">R12,000 – R25,000</option>
+                <option value="r25000_plus">R25,000+</option>
               </select>
             </div>
           </div>
@@ -271,20 +270,17 @@
       document.getElementById('form-errors').style.display = 'none';
 
       try {
-        const endpoint = form.action || window.location.href;
-        const response = await fetch(endpoint, {
+        const formData = new FormData(form);
+        const body = new URLSearchParams(formData);
+        body.append('form-name', form.getAttribute('name'));
+
+        const response = await fetch("/", {
           method: 'POST',
-          credentials: 'same-origin',
-          headers: {
-            'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
-            'X-Requested-With': 'XMLHttpRequest'
-          },
-          body: formData,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body.toString(),
         });
 
-        const result = await response.json();
-
-        if (response.ok && result.success) {
+        if (response.ok) {
           // Success
           document.getElementById('form-success').style.display = 'block';
           document.getElementById('contact-form-wrapper').style.display = 'none';
@@ -300,26 +296,7 @@
           // Error
           const errorDiv = document.getElementById('form-errors');
           const errorList = document.getElementById('error-list');
-          errorList.innerHTML = '';
-
-          if (result.errors) {
-            // Field-specific errors
-            Object.entries(result.errors).forEach(([field, messages]) => {
-              messages.forEach(message => {
-                const li = document.createElement('li');
-                li.textContent = `${field}: ${message}`;
-                errorList.appendChild(li);
-              });
-            });
-          } else if (result.message) {
-            const li = document.createElement('li');
-            li.textContent = result.message;
-            errorList.appendChild(li);
-          } else {
-            const li = document.createElement('li');
-            li.textContent = 'An unexpected error occurred. Please try again.';
-            errorList.appendChild(li);
-          }
+          errorList.innerHTML = '<li>We could not submit the form. Please try again later.</li>';
 
           errorDiv.style.display = 'block';
           errorDiv.scrollIntoView({

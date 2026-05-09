@@ -114,24 +114,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const formData = new FormData(form);
-      const endpoint = form.action || window.location.href;
-      const csrfToken = formData.get('csrfmiddlewaretoken') || '';
+      // Netlify requires the form name in the body
+      const body = new URLSearchParams(formData);
+      body.append('form-name', form.getAttribute('name'));
 
       try {
-        const response = await fetch(endpoint, {
+        const response = await fetch("/", {
           method: 'POST',
-          credentials: 'same-origin',
-          headers: {
-            'X-CSRFToken': csrfToken,
-            'X-Requested-With': 'XMLHttpRequest'
-          },
-          body: formData
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body.toString()
         });
 
-        const result = await response.json().catch(() => ({}));
-        const message = result.message || result.error || (response.ok ? 'Your message was sent.' : 'We could not submit the form.');
+        const ok = response.ok;
+        const message = ok ? 'Your message was sent.' : 'We could not submit the form. Please try again later.';
 
-        if (response.ok) {
+        if (ok) {
           if (feedback) {
             feedback.classList.add('form-message--success');
             feedback.textContent = message;

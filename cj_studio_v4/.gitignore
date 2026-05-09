@@ -1,0 +1,5 @@
+BACKEND_BACKUP/
+.netlify/
+.DS_Store
+node_modules/
+.env
